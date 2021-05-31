@@ -4,6 +4,7 @@ provider "aws" {
 
 provider "github" {
   token = var.GH_PERSONAL_ACCESS_TOKEN
+  owner = "unofficialopensource-knit"
 }
 
 terraform {

@@ -25,7 +25,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
 
       - name: "Initialize terraform"
-        run: terraform init
+        run: terraform -chdir=github init
 
       - name: "Check for terraform plan for github"
         run: terraform -chdir=github plan

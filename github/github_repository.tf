@@ -1,3 +1,19 @@
+resource "github_repository" "api_gateway" {
+  name                   = "api_gateway"
+  description            = "Codebase for api_gateway"
+  visibility             = "public"
+  has_issues             = true
+  has_projects           = false
+  has_wiki               = false
+  is_template            = false
+  allow_merge_commit     = false
+  allow_squash_merge     = true
+  allow_rebase_merge     = false
+  delete_branch_on_merge = true
+  has_downloads          = true
+  auto_init              = false
+}
+
 resource "github_repository" "auth_service" {
   name                   = "auth_service"
   description            = "Codebase for auth service"
@@ -13,10 +29,89 @@ resource "github_repository" "auth_service" {
   has_downloads          = true
   auto_init              = false
 }
-
 resource "github_repository" "bet_service" {
   name                   = "bet_service"
   description            = "Codebase for bet service"
+  visibility             = "public"
+  has_issues             = true
+  has_projects           = false
+  has_wiki               = false
+  is_template            = false
+  allow_merge_commit     = false
+  allow_squash_merge     = true
+  allow_rebase_merge     = false
+  delete_branch_on_merge = true
+  has_downloads          = true
+  auto_init              = false
+}
+
+resource "github_repository" "email_service" {
+  name                   = "email_service"
+  description            = "Codebase for email_service"
+  visibility             = "public"
+  has_issues             = true
+  has_projects           = false
+  has_wiki               = false
+  is_template            = false
+  allow_merge_commit     = false
+  allow_squash_merge     = true
+  allow_rebase_merge     = false
+  delete_branch_on_merge = true
+  has_downloads          = true
+  auto_init              = false
+}
+
+resource "github_repository" "platform_setup" {
+  name                   = "platform_setup"
+  description            = "Codebase for platform_setup"
+  visibility             = "public"
+  has_issues             = true
+  has_projects           = false
+  has_wiki               = false
+  is_template            = false
+  allow_merge_commit     = false
+  allow_squash_merge     = true
+  allow_rebase_merge     = false
+  delete_branch_on_merge = true
+  has_downloads          = true
+  auto_init              = false
+}
+
+resource "github_repository" "user_management_service" {
+  name                   = "user_management_service"
+  description            = "Codebase for user_management_service"
+  visibility             = "public"
+  has_issues             = true
+  has_projects           = false
+  has_wiki               = false
+  is_template            = false
+  allow_merge_commit     = false
+  allow_squash_merge     = true
+  allow_rebase_merge     = false
+  delete_branch_on_merge = true
+  has_downloads          = true
+  auto_init              = false
+}
+
+resource "github_repository" "web_client" {
+  name                   = "web_client"
+  description            = "Codebase for web_client"
+  visibility             = "public"
+  has_issues             = true
+  has_projects           = false
+  has_wiki               = false
+  is_template            = false
+  allow_merge_commit     = false
+  allow_squash_merge     = true
+  allow_rebase_merge     = false
+  delete_branch_on_merge = true
+  has_downloads          = true
+  auto_init              = false
+}
+
+resource "github_repository" "wiki" {
+  name                   = "wiki"
+  description            = "Codebase for wiki"
   visibility             = "public"
   has_issues             = true
   has_projects           = false

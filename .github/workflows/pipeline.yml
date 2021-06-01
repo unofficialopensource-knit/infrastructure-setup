@@ -17,36 +17,12 @@ jobs:
       - name: "Run terraform to check for formatting"
         run: terraform fmt -check
 
-  # test:
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #     - uses: actions/checkout@v2
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - uses: actions/setup-python@v2
-  #       with:
-  #         python-version: "3.9.4"
+      - uses: hashicorp/setup-terraform@v1
 
-  #     - uses: actions/cache@v2
-  #       with:
-  #         path: ~/.cache/pip
-  #         key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-pip-
-  #           ${{ runner.os }}-
-
-  #     - name: "Install test dependencies"
-  #       run: |
-  #         pip install --upgrade pip setuptools wheel
-  #         pip install --requirement requirements/prod.txt
-  #         pip install --requirement requirements/test.txt
-
-  #     - name: "Run pytest for testing and code coverage"
-  #       run: pytest -c config/pyproject.toml --cov-report xml
-
-  #     - name: "Upload Test coverage to codecov"
-  #       uses: codecov/codecov-action@v1
-  #       with:
-  #         token: ${{ secrets.CODECOV_TOKEN }}
-  #         files: coverage.xml
-  #         fail_ci_if_error: true
-  #         verbose: true
+      - name: "Initialize terraform"
+        run: terraform init

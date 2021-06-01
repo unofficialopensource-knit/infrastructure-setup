@@ -32,3 +32,13 @@ resource "github_branch" "user_management_service_release" {
     repository = github_repository.user_management_service.name
     branch = "release"
 }
+
+resource "github_branch" "web_client_main" {
+    repository = github_repository.web_client.name
+    branch = "main"
+}
+
+resource "github_branch" "web_client_release" {
+    repository = github_repository.web_client.name
+    branch = "release"
+}

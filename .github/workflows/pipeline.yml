@@ -27,5 +27,5 @@ jobs:
       - name: "Initialize terraform"
         run: terraform init
 
-      - name: "Check for terraform plan"
-        run: terraform plan
+      - name: "Check for terraform plan for github"
+        run: terraform -chdir=github plan

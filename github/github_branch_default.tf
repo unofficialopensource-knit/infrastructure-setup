@@ -22,3 +22,8 @@ resource "github_branch_default" "web_client_default_branch" {
     repository = github_repository.web_client.name
     branch = github_branch.web_client_release.branch
 }
+
+resource "github_branch_default" "wiki_default_branch" {
+    repository = github_repository.wiki.name
+    branch = github_branch.wiki_main.branch
+}

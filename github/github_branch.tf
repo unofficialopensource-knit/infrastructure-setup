@@ -22,3 +22,13 @@ resource "github_branch" "platform_setup_main" {
     repository = github_repository.platform_setup.name
     branch = "main"
 }
+
+resource "github_branch" "user_management_service_main" {
+    repository = github_repository.user_management_service.name
+    branch = "main"
+}
+
+resource "github_branch" "user_management_service_release" {
+    repository = github_repository.user_management_service.name
+    branch = "release"
+}

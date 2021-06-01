@@ -24,6 +24,11 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v1
 
+      - name: "Export env vars"
+        run: |
+          export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+          export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+
       - name: "Initialize terraform"
         run: terraform -chdir=github init
 

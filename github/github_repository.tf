@@ -46,6 +46,22 @@ resource "github_repository" "wiki" {
   auto_init              = false
 }
 
+resource "github_repository" "platform_setup" {
+  name                   = "platform_setup"
+  description            = "Codebase for platform_setup"
+  visibility             = "public"
+  has_issues             = true
+  has_projects           = false
+  has_wiki               = false
+  is_template            = false
+  allow_merge_commit     = false
+  allow_squash_merge     = true
+  allow_rebase_merge     = false
+  delete_branch_on_merge = true
+  has_downloads          = true
+  auto_init              = false
+}
+
 resource "github_repository" "auth_service" {
   name                   = "auth_service"
   description            = "Codebase for auth service"

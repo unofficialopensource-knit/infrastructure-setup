@@ -17,3 +17,8 @@ resource "github_branch" "email_service_release" {
     repository = github_repository.email_service.name
     branch = "release"
 }
+
+resource "github_branch" "platform_setup_main" {
+    repository = github_repository.platform_setup.name
+    branch = "main"
+}

@@ -26,3 +26,6 @@ jobs:
 
       - name: "Initialize terraform"
         run: terraform init
+
+      - name: "Check for terraform plan"
+        run: terraform plan

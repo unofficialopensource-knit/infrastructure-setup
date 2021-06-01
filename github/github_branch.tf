@@ -42,3 +42,8 @@ resource "github_branch" "web_client_release" {
     repository = github_repository.web_client.name
     branch = "release"
 }
+
+resource "github_branch" "wiki_main" {
+    repository = github_repository.wiki.name
+    branch = "main"
+}

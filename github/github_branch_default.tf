@@ -12,3 +12,8 @@ resource "github_branch_default" "platform_setup_default_branch" {
     repository = github_repository.platform_setup.name
     branch = github_branch.platform_setup_main.branch
 }
+
+resource "github_branch_default" "user_management_service_default_branch" {
+    repository = github_repository.user_management_service.name
+    branch = github_branch.user_management_service_release.branch
+}

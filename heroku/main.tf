@@ -9,10 +9,10 @@ provider "heroku" {
 
 terraform {
   backend "s3" {
-    bucket         = "unofficial-open-source-knit-state-bucket"
+    bucket         = "heroku-state-bucket"
     key            = "terraform.tfstate"
     region         = "ap-south-1"
-    dynamodb_table = "unofficial-open-source-lock-table"
+    dynamodb_table = "heroku-lock-table"
     encrypt        = true
   }
   required_providers {

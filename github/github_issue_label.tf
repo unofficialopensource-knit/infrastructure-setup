@@ -312,3 +312,66 @@ resource "github_issue_label" "web_client_wontfix" {
   color       = "ffffff"
   description = "This will not be worked on"
 }
+
+resource "github_issue_label" "wiki_bug" {
+  repository  = github_repository.wiki.name
+  name        = "bug"
+  color       = "d73a4a"
+  description = "Something isn't working"
+}
+
+resource "github_issue_label" "wiki_documentation" {
+  repository  = github_repository.wiki.name
+  name        = "documentation"
+  color       = "0075ca"
+  description = "Improvements or additions to documentation"
+}
+
+resource "github_issue_label" "wiki_duplicate" {
+  repository  = github_repository.wiki.name
+  name        = "duplicate"
+  color       = "cfd3d7"
+  description = "This issue or pull request already exists"
+}
+
+resource "github_issue_label" "wiki_enhancement" {
+  repository  = github_repository.wiki.name
+  name        = "enhancement"
+  color       = "a2eeef"
+  description = "New feature or request"
+}
+
+resource "github_issue_label" "wiki_good_first_issue" {
+  repository  = github_repository.wiki.name
+  name        = "good first issue"
+  color       = "7057ff"
+  description = "Good for newcomers"
+}
+
+resource "github_issue_label" "wiki_help_wanted" {
+  repository  = github_repository.wiki.name
+  name        = "help wanted"
+  color       = "008672"
+  description = "Extra attention is needed"
+}
+
+resource "github_issue_label" "wiki_invalid" {
+  repository  = github_repository.wiki.name
+  name        = "invalid"
+  color       = "e4e669"
+  description = "This doesn't seem right"
+}
+
+resource "github_issue_label" "wiki_question" {
+  repository  = github_repository.wiki.name
+  name        = "question"
+  color       = "d876e3"
+  description = "Further information is requested"
+}
+
+resource "github_issue_label" "wiki_wontfix" {
+  repository  = github_repository.wiki.name
+  name        = "wontfix"
+  color       = "ffffff"
+  description = "This will not be worked on"
+}

@@ -1,0 +1,62 @@
+resource "github_issue_label" "api_gateway_bug" {
+  repository  = github_repository.api_gateway.name
+  name        = "bug"
+  color       = "d73a4a"
+  description = "Something isn't working"
+}
+
+resource "github_issue_label" "api_gateway_documentation" {
+  repository  = github_repository.api_gateway.name
+  name        = "documentation"
+  color       = "0075ca"
+  description = "Improvements or additions to documentation"
+}
+
+resource "github_issue_label" "api_gateway_duplicate" {
+  repository  = github_repository.api_gateway.name
+  name        = "duplicate"
+  color       = "cfd3d7"
+  description = "This issue or pull request already exists"
+}
+
+resource "github_issue_label" "api_gateway_enhancement" {
+  repository  = github_repository.api_gateway.name
+  name        = "enhancement"
+  color       = "a2eeef"
+  description = "New feature or request"
+}
+
+resource "github_issue_label" "api_gateway_good_first_issue" {
+  repository  = github_repository.api_gateway.name
+  name        = "good first issue"
+  color       = "7057ff"
+  description = "Good for newcomers"
+}
+
+resource "github_issue_label" "api_gateway_help_wanted" {
+  repository  = github_repository.api_gateway.name
+  name        = "help wanted"
+  color       = "008672"
+  description = "Extra attention is needed"
+}
+
+resource "github_issue_label" "api_gateway_invalid" {
+  repository  = github_repository.api_gateway.name
+  name        = "invalid"
+  color       = "e4e669"
+  description = "This doesn't seem right"
+}
+
+resource "github_issue_label" "api_gateway_question" {
+  repository  = github_repository.api_gateway.name
+  name        = "question"
+  color       = "d876e3"
+  description = "Further information is requested"
+}
+
+resource "github_issue_label" "api_gateway_wontfix" {
+  repository  = github_repository.api_gateway.name
+  name        = "wontfix"
+  color       = "ffffff"
+  description = "This will not be worked on"
+}

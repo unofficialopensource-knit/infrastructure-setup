@@ -4,7 +4,7 @@ provider "aws" {
 
 provider "heroku" {
   email   = var.HEROKU_EMAIL
-  api_key = var.HEROKU_ACCESS_TOKEN
+  api_key = var.HEROKU_API_KEY
 }
 
 terraform {

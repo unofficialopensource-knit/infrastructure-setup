@@ -38,3 +38,21 @@ variable "EMAIL_SERVICE_REDIS_URL" {
   description = "Redis URI for Email Service"
   sensitive   = true
 }
+
+variable "USER_MANAGEMENT_SERVICE_DATABASE_URL" {
+  type        = string
+  description = "Database URI for User Management Service"
+  sensitive   = true
+}
+
+variable "USER_MANAGEMENT_SERVICE_REDIS_TLS_URL" {
+  type        = string
+  description = "Redis(secure) URI for User Management Service"
+  sensitive   = true
+}
+
+variable "USER_MANAGEMENT_SERVICE_REDIS_URL" {
+  type        = string
+  description = "Redis URI for User Management Service"
+  sensitive   = true
+}

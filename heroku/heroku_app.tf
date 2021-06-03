@@ -52,7 +52,10 @@ resource "heroku_app" "wiki_app" {
   region = "us"
   stack  = "container"
   config_vars = {
-    DB_TYPE = "postgres"
+    DB_TYPE   = "postgres"
+    DB_SSL    = 1
+    HEROKU    = 1
+    PGSSLMODE = "no-verify"
   }
   sensitive_config_vars = {
     DB_HOST = var.WIKI_DATABASE_HOST

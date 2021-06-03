@@ -56,3 +56,33 @@ variable "USER_MANAGEMENT_SERVICE_REDIS_URL" {
   description = "Redis URI for User Management Service"
   sensitive   = true
 }
+
+variable "WIKI_DATABASE_HOST" {
+  type        = string
+  description = "Database host for Wiki"
+  sensitive   = true
+}
+
+variable "WIKI_DATABASE_PORT" {
+  type        = string
+  description = "Database port for Wiki"
+  sensitive   = true
+}
+
+variable "WIKI_DATABASE_USER" {
+  type        = string
+  description = "Database user for Wiki"
+  sensitive   = true
+}
+
+variable "WIKI_DATABASE_PASSWORD" {
+  type        = string
+  description = "Database password for Wiki"
+  sensitive   = true
+}
+
+variable "WIKI_DATABASE_NAME" {
+  type        = string
+  description = "Database name for Wiki"
+  sensitive   = true
+}

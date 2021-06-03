@@ -32,10 +32,17 @@ resource "heroku_app" "email_service_app" {
     }
 }
 
-# resource "heroku_app" "user_management_service_app" {
-#     name = "user-management-service-web"
-#     region = "us"
-#     stack = "container"
-#     config_vars = {}
-#     sensitive_config_vars = {}
-# }
+resource "heroku_app" "user_management_service_app" {
+    name = "user-management-service-web"
+    region = "us"
+    stack = "container"
+    config_vars = {
+        NODE_ENV = "production"
+        RESULTS_PER_PAGE = 10
+    }
+    sensitive_config_vars = {
+        DATABASE_URI = var.USER_MANAGEMENT_SERVICE_DATABASE_URL
+        REDIS_TLS_URL = var.USER_MANAGEMENT_SERVICE_REDIS_TLS_URL
+        REDIS_URL = var.USER_MANAGEMENT_SERVICE_REDIS_URL
+    }
+}

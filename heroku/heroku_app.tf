@@ -46,3 +46,19 @@ resource "heroku_app" "user_management_service_app" {
     REDIS_URL     = var.USER_MANAGEMENT_SERVICE_REDIS_URL
   }
 }
+
+resource "heroku_app" "wiki_app" {
+  name   = "wiki-service-web"
+  region = "us"
+  stack  = "container"
+  config_vars = {
+    DB_TYPE = "postgres"
+  }
+  sensitive_config_vars = {
+    DB_HOST = var.WIKI_DATABASE_HOST
+    DB_PORT = var.WIKI_DATABASE_PORT
+    DB_USER = var.WIKI_DATABASE_USER
+    DB_PASS = var.WIKI_DATABASE_PASSWORD
+    DB_NAME = var.WIKI_DATABASE_NAME
+  }
+}

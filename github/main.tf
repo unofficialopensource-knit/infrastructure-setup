@@ -9,10 +9,10 @@ provider "github" {
 
 terraform {
   backend "s3" {
-    bucket         = "unofficial-open-source-knit-state-bucket"
+    bucket         = "github-state-bucket"
     key            = "terraform.tfstate"
     region         = "ap-south-1"
-    dynamodb_table = "unofficial-open-source-lock-table"
+    dynamodb_table = "github-lock-table"
     encrypt        = true
   }
   required_providers {

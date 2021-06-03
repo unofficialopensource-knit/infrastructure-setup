@@ -75,9 +75,6 @@ resource "github_branch_protection" "platform_setup_branch_protection_main" {
   pattern                = "main"
   enforce_admins         = false
   require_signed_commits = true
-  required_pull_request_reviews {
-    dismiss_stale_reviews = true
-  }
 }
 
 resource "github_branch_protection" "user_management_service_branch_protection_main" {
@@ -150,7 +147,4 @@ resource "github_branch_protection" "wiki_branch_protection_main" {
   pattern                = "main"
   enforce_admins         = false
   require_signed_commits = true
-  required_pull_request_reviews {
-    dismiss_stale_reviews = true
-  }
 }

@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  lint:
+  test:
     runs-on: "ubuntu-20.04"
     steps:
       - uses: actions/checkout@v2
@@ -16,3 +16,13 @@ jobs:
 
       - name: "Run terraform to check for formatting"
         run: terraform fmt -check
+
+  build:
+    runs-on: "ubuntu-20.04"
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: hashicorp/setup-terraform@v1
+
+      - name: "Run terraform to check for formatting"
+        run: terraform -chdir=github init

@@ -8,6 +8,7 @@ resource "heroku_app" "api_gateway_app" {
     PROCESS_TYPE           = "web"
     WEB_ENV                = "production"
     EMAIL_MICROSERVICE_URL = "https://email-service-web.herokuapp.com"
+    USER_MICROSERVICE_URL  = "https://user-management-service-web.herokuapp.com"
   }
 }
 

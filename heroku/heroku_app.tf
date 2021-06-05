@@ -4,7 +4,7 @@ resource "heroku_app" "api_gateway_app" {
   stack  = "container"
   config_vars = {
     CORS_ORIGINS           = "*"
-    DEPLOYMENT_PLATFORM    = "platform"
+    DEPLOYMENT_PLATFORM    = "heroku"
     PROCESS_TYPE           = "web"
     WEB_ENV                = "production"
     EMAIL_MICROSERVICE_URL = "https://email-service-web.herokuapp.com"

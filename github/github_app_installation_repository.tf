@@ -8,7 +8,7 @@ resource "github_app_installation_repository" "email_service_codecov_app" {
   repository      = github_repository.email_service.name
 }
 
-resource "github_app_installation_repository" "user_management_service_codecov_app" {
+resource "github_app_installation_repository" "profile_service_codecov_app" {
   installation_id = "16927671"
   repository      = github_repository.user_management_service.name
 }
@@ -33,7 +33,7 @@ resource "github_app_installation_repository" "platform_setup_codefactor_app" {
   repository      = github_repository.platform_setup.name
 }
 
-resource "github_app_installation_repository" "user_management_service_codefactor_app" {
+resource "github_app_installation_repository" "profile_service_codefactor_app" {
   installation_id = "16967095"
   repository      = github_repository.user_management_service.name
 }
@@ -58,7 +58,7 @@ resource "github_app_installation_repository" "platform_setup_deepsource_app" {
   repository      = github_repository.platform_setup.name
 }
 
-resource "github_app_installation_repository" "user_management_service_deepsource_app" {
+resource "github_app_installation_repository" "profile_service_deepsource_app" {
   installation_id = "16888192"
   repository      = github_repository.user_management_service.name
 }
@@ -88,7 +88,7 @@ resource "github_app_installation_repository" "platform_setup_slack_app" {
   repository      = github_repository.platform_setup.name
 }
 
-resource "github_app_installation_repository" "user_management_service_slack_app" {
+resource "github_app_installation_repository" "profile_service_slack_app" {
   installation_id = "16656997"
   repository      = github_repository.user_management_service.name
 }

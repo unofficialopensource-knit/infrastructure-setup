@@ -14,7 +14,7 @@ resource "github_branch_default" "platform_setup_default_branch" {
 }
 
 resource "github_branch_default" "profile_service_default_branch" {
-  repository = github_repository.user_management_service.name
+  repository = github_repository.profile_service.name
   branch     = github_branch.profile_service_release.branch
 }
 

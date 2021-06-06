@@ -78,7 +78,7 @@ resource "github_branch_protection" "platform_setup_branch_protection_main" {
 }
 
 resource "github_branch_protection" "profile_service_branch_protection_main" {
-  repository_id          = github_repository.user_management_service.node_id
+  repository_id          = github_repository.profile_service.node_id
   pattern                = "main"
   enforce_admins         = false
   require_signed_commits = false
@@ -92,7 +92,7 @@ resource "github_branch_protection" "profile_service_branch_protection_main" {
 }
 
 resource "github_branch_protection" "profile_service_branch_protection_release" {
-  repository_id          = github_repository.user_management_service.node_id
+  repository_id          = github_repository.profile_service.node_id
   pattern                = "release"
   enforce_admins         = false
   require_signed_commits = true

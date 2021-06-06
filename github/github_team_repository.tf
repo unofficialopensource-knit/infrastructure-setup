@@ -18,7 +18,7 @@ resource "github_team_repository" "platform_setup_ops_team" {
 
 resource "github_team_repository" "profile_service_backend_team" {
   team_id    = github_team.backend_team.id
-  repository = github_repository.user_management_service.name
+  repository = github_repository.profile_service.name
   permission = "maintain"
 }
 

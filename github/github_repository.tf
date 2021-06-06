@@ -46,9 +46,9 @@ resource "github_repository" "platform_setup" {
   auto_init              = false
 }
 
-resource "github_repository" "user_management_service" {
-  name                   = "user_management_service"
-  description            = "Codebase for user_management_service"
+resource "github_repository" "profile_service" {
+  name                   = "profile_service"
+  description            = "Codebase for profile_service"
   visibility             = "public"
   has_issues             = true
   has_projects           = false

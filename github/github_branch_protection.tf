@@ -43,7 +43,6 @@ resource "github_branch_protection" "email_service_branch_protection_main" {
     strict = true
     contexts = [
       "pyup.io/safety-ci",
-      "lint",
       "test",
       "build"
     ]
@@ -55,15 +54,6 @@ resource "github_branch_protection" "email_service_branch_protection_release" {
   pattern                = "release"
   enforce_admins         = false
   require_signed_commits = true
-  required_status_checks {
-    strict = true
-    contexts = [
-      "pyup.io/safety-ci",
-      "lint",
-      "test",
-      "build"
-    ]
-  }
   required_pull_request_reviews {
     dismiss_stale_reviews           = true
     required_approving_review_count = 1

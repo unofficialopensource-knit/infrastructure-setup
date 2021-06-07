@@ -3,6 +3,7 @@ provider "aws" {
 }
 
 provider "discord" {
+    token = var.DISCORD_TOKEN
 }
 
 terraform {

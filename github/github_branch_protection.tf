@@ -24,6 +24,31 @@ resource "github_branch_protection" "api_gateway_branch_protection_release" {
   }
 }
 
+resource "github_branch_protection" "auth_service_branch_protection_main" {
+  repository_id          = github_repository.auth_service.node_id
+  pattern                = "main"
+  enforce_admins         = false
+  require_signed_commits = false
+  required_status_checks {
+    strict = true
+    contexts = [
+      "test",
+      "build"
+    ]
+  }
+}
+
+resource "github_branch_protection" "auth_service_branch_protection_release" {
+  repository_id          = github_repository.auth_service.node_id
+  pattern                = "release"
+  enforce_admins         = false
+  require_signed_commits = true
+  required_pull_request_reviews {
+    dismiss_stale_reviews           = true
+    required_approving_review_count = 1
+  }
+}
+
 resource "github_branch_protection" "email_service_branch_protection_main" {
   repository_id          = github_repository.email_service.node_id
   pattern                = "main"

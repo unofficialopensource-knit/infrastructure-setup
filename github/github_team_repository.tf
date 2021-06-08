@@ -4,6 +4,12 @@ resource "github_team_repository" "api_gateway_backend_team" {
   permission = "maintain"
 }
 
+resource "github_team_repository" "auth_service_backend_team" {
+  team_id    = github_team.backend_team.id
+  repository = github_repository.auth_service.name
+  permission = "maintain"
+}
+
 resource "github_team_repository" "email_service_backend_team" {
   team_id    = github_team.backend_team.id
   repository = github_repository.email_service.name

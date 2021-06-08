@@ -12,6 +12,12 @@ resource "heroku_app" "api_gateway_app" {
   }
 }
 
+resource "heroku_app" "auth_service_app" {
+  name   = "auth-service-web"
+  region = "us"
+  stack  = "container"
+}
+
 resource "heroku_app" "email_service_app" {
   name   = "email-service-web"
   region = "us"

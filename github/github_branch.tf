@@ -18,6 +18,11 @@ resource "github_branch" "auth_service_release" {
   branch     = "release"
 }
 
+resource "github_branch" "discord_bot_main" {
+  repository = github_repository.discord_bot.name
+  branch     = "main"
+}
+
 resource "github_branch" "email_service_main" {
   repository = github_repository.email_service.name
   branch     = "main"

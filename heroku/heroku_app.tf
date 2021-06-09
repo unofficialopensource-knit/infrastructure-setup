@@ -18,6 +18,12 @@ resource "heroku_app" "auth_service_app" {
   stack  = "container"
 }
 
+resource "heroku_app" "discord_bot_app" {
+  name   = "discord-bot-web"
+  region = "us"
+  stack  = "container"
+}
+
 resource "heroku_app" "email_service_app" {
   name   = "email-service-web"
   region = "us"

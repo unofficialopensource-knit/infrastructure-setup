@@ -8,6 +8,11 @@ resource "github_branch_default" "auth_service_default_branch" {
   branch     = github_branch.auth_service_release.branch
 }
 
+resource "github_branch_default" "discord_bot_default_branch" {
+  repository = github_repository.discord_bot.name
+  branch     = github_branch.discord_bot_main.branch
+}
+
 resource "github_branch_default" "email_service_default_branch" {
   repository = github_repository.email_service.name
   branch     = github_branch.email_service_release.branch

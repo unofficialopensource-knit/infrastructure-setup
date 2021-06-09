@@ -10,7 +10,7 @@ resource "github_team_repository" "auth_service_backend_team" {
   permission = "maintain"
 }
 
-resource "github_team_repository" "discord_bot_backend_team" {
+resource "github_team_repository" "discord_bot_ops_team" {
   team_id    = github_team.ops_team.id
   repository = github_repository.discord_bot.name
   permission = "maintain"

@@ -124,6 +124,69 @@ resource "github_issue_label" "auth_service_wontfix" {
   description = "This will not be worked on"
 }
 
+resource "github_issue_label" "discord_bot_bug" {
+  repository  = github_repository.discord_bot.name
+  name        = "bug"
+  color       = "d73a4a"
+  description = "Something isn't working"
+}
+
+resource "github_issue_label" "discord_bot_documentation" {
+  repository  = github_repository.discord_bot.name
+  name        = "documentation"
+  color       = "0075ca"
+  description = "Improvements or additions to documentation"
+}
+
+resource "github_issue_label" "discord_bot_duplicate" {
+  repository  = github_repository.discord_bot.name
+  name        = "duplicate"
+  color       = "cfd3d7"
+  description = "This issue or pull request already exists"
+}
+
+resource "github_issue_label" "discord_bot_enhancement" {
+  repository  = github_repository.discord_bot.name
+  name        = "enhancement"
+  color       = "a2eeef"
+  description = "New feature or request"
+}
+
+resource "github_issue_label" "discord_bot_good_first_issue" {
+  repository  = github_repository.discord_bot.name
+  name        = "good first issue"
+  color       = "7057ff"
+  description = "Good for newcomers"
+}
+
+resource "github_issue_label" "discord_bot_help_wanted" {
+  repository  = github_repository.discord_bot.name
+  name        = "help wanted"
+  color       = "008672"
+  description = "Extra attention is needed"
+}
+
+resource "github_issue_label" "discord_bot_invalid" {
+  repository  = github_repository.discord_bot.name
+  name        = "invalid"
+  color       = "e4e669"
+  description = "This doesn't seem right"
+}
+
+resource "github_issue_label" "discord_bot_question" {
+  repository  = github_repository.discord_bot.name
+  name        = "question"
+  color       = "d876e3"
+  description = "Further information is requested"
+}
+
+resource "github_issue_label" "discord_bot_wontfix" {
+  repository  = github_repository.discord_bot.name
+  name        = "wontfix"
+  color       = "ffffff"
+  description = "This will not be worked on"
+}
+
 resource "github_issue_label" "email_service_bug" {
   repository  = github_repository.email_service.name
   name        = "bug"

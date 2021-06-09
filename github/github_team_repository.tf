@@ -19,7 +19,7 @@ resource "github_team_repository" "discord_bot_ops_team" {
 resource "github_team_repository" "discord_bot_backend_team" {
   team_id    = github_team.backend_team.id
   repository = github_repository.discord_bot.name
-  permission = "member"
+  permission = "push"
 }
 
 resource "github_team_repository" "email_service_backend_team" {

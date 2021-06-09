@@ -10,6 +10,18 @@ resource "github_team_repository" "auth_service_backend_team" {
   permission = "maintain"
 }
 
+resource "github_team_repository" "discord_bot_backend_team" {
+  team_id    = github_team.ops_team.id
+  repository = github_repository.discord_bot.name
+  permission = "maintain"
+}
+
+resource "github_team_repository" "discord_bot_backend_team" {
+  team_id    = github_team.backend_team.id
+  repository = github_repository.discord_bot.name
+  permission = "member"
+}
+
 resource "github_team_repository" "email_service_backend_team" {
   team_id    = github_team.backend_team.id
   repository = github_repository.email_service.name

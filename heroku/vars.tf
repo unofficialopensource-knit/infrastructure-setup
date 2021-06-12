@@ -86,9 +86,3 @@ variable "WIKI_DATABASE_NAME" {
   description = "Database name for Wiki"
   sensitive   = true
 }
-
-variable "DISCORD_BOT_TOKEN" {
-  type        = string
-  description = "Token for discord bot"
-  sensitive   = true
-}

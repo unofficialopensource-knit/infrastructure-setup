@@ -23,11 +23,9 @@ resource "heroku_app" "discord_bot_app" {
   region = "us"
   stack  = "container"
   config_vars = {
-    LOG_LEVEL        = "INFO"
+    CORS_ORIGINS     = "*"
     PYTHONUNBUFFERED = 1
-  }
-  sensitive_config_vars = {
-    DISCORD_BOT_TOKEN = var.DISCORD_BOT_TOKEN
+    WEB_ENV          = "production"
   }
 }
 

@@ -12,6 +12,7 @@ resource "github_repository" "api_gateway" {
   delete_branch_on_merge = true
   has_downloads          = true
   auto_init              = false
+  vulnerability_alerts   = true
 }
 
 resource "github_repository" "auth_service" {
@@ -28,6 +29,7 @@ resource "github_repository" "auth_service" {
   delete_branch_on_merge = true
   has_downloads          = true
   auto_init              = false
+  vulnerability_alerts   = true
 }
 
 resource "github_repository" "discord_bot" {
@@ -44,6 +46,7 @@ resource "github_repository" "discord_bot" {
   delete_branch_on_merge = true
   has_downloads          = true
   auto_init              = false
+  vulnerability_alerts   = true
 }
 
 resource "github_repository" "email_service" {
@@ -60,6 +63,7 @@ resource "github_repository" "email_service" {
   delete_branch_on_merge = true
   has_downloads          = true
   auto_init              = false
+  vulnerability_alerts   = true
 }
 
 resource "github_repository" "platform_setup" {
@@ -76,6 +80,7 @@ resource "github_repository" "platform_setup" {
   delete_branch_on_merge = true
   has_downloads          = true
   auto_init              = false
+  vulnerability_alerts   = true
 }
 
 resource "github_repository" "profile_service" {
@@ -92,6 +97,7 @@ resource "github_repository" "profile_service" {
   delete_branch_on_merge = true
   has_downloads          = true
   auto_init              = false
+  vulnerability_alerts   = true
 }
 
 resource "github_repository" "web_client" {
@@ -108,6 +114,7 @@ resource "github_repository" "web_client" {
   delete_branch_on_merge = true
   has_downloads          = true
   auto_init              = false
+  vulnerability_alerts   = true
 }
 
 resource "github_repository" "wiki" {
@@ -124,4 +131,5 @@ resource "github_repository" "wiki" {
   delete_branch_on_merge = true
   has_downloads          = true
   auto_init              = false
+  vulnerability_alerts   = true
 }

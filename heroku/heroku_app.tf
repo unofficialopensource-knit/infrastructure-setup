@@ -23,12 +23,12 @@ resource "heroku_app" "discord_bot_app" {
   region = "us"
   stack  = "container"
   config_vars = {
-    CORS_ORIGINS        = "*"
     PYTHONUNBUFFERED    = 1
     WEB_ENV             = "production"
   }
   sensitive_config_vars = {
     DISCORD_WEBHOOK_URL = var.DISCORD_WEBHOOK_URL
+    TRUSTED_HOSTS = var.TRUSTED_HOSTS
   }
 }
 

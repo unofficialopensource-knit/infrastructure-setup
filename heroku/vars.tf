@@ -92,3 +92,9 @@ variable "DISCORD_WEBHOOK_URL" {
   description = "Webhook URL for discord"
   sensitive   = true
 }
+
+variable "TRUSTED_HOSTS" {
+  type        = string
+  description = "Trusted hosts for discord bot"
+  sensitive   = true
+}

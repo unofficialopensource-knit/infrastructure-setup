@@ -74,6 +74,7 @@ jobs:
           TF_VAR_WIKI_DATABASE_PASSWORD: ${{ secrets.WIKI_DATABASE_PASSWORD }}
           TF_VAR_WIKI_DATABASE_NAME: ${{ secrets.WIKI_DATABASE_NAME }}
           TF_VAR_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
         run: |
           terraform -chdir=github plan -input=false
           terraform -chdir=heroku plan -input=false
@@ -119,6 +120,7 @@ jobs:
           TF_VAR_WIKI_DATABASE_PASSWORD: ${{ secrets.WIKI_DATABASE_PASSWORD }}
           TF_VAR_WIKI_DATABASE_NAME: ${{ secrets.WIKI_DATABASE_NAME }}
           TF_VAR_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
         run: |
           terraform -chdir=github apply -auto-approve -input=false
           terraform -chdir=heroku apply -auto-approve -input=false

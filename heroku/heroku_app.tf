@@ -23,7 +23,6 @@ resource "heroku_app" "discord_bot_app" {
   region = "us"
   stack  = "container"
   config_vars = {
-    CORS_ORIGINS        = "*"
     PYTHONUNBUFFERED    = 1
     WEB_ENV             = "production"
   }

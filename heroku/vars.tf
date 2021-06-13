@@ -86,3 +86,9 @@ variable "WIKI_DATABASE_NAME" {
   description = "Database name for Wiki"
   sensitive   = true
 }
+
+variable "DISCORD_WEBHOOK_URL" {
+  type        = string
+  description = "Webhook URL for discord"
+  sensitive   = true
+}

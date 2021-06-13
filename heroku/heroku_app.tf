@@ -23,9 +23,10 @@ resource "heroku_app" "discord_bot_app" {
   region = "us"
   stack  = "container"
   config_vars = {
-    CORS_ORIGINS     = "*"
-    PYTHONUNBUFFERED = 1
-    WEB_ENV          = "production"
+    CORS_ORIGINS        = "*"
+    DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/851495199179800616/V1Bgi3tyuv8tyGlJAcbJ_AQTtKn0wjqq3CQBSW-XCWbninT5jHHHB3epkFWJTXxU732U"
+    PYTHONUNBUFFERED    = 1
+    WEB_ENV             = "production"
   }
 }
 

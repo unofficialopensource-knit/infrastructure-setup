@@ -71,7 +71,6 @@ resource "github_branch_protection" "email_service_branch_protection_main" {
   required_status_checks {
     strict = true
     contexts = [
-      "pyup.io/safety-ci",
       "test",
       "build"
     ]

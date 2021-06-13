@@ -28,6 +28,7 @@ resource "heroku_app" "discord_bot_app" {
   }
   sensitive_config_vars = {
     DISCORD_WEBHOOK_URL = var.DISCORD_WEBHOOK_URL
+    TRUSTED_HOSTS = var.TRUSTED_HOSTS
   }
 }
 

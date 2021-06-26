@@ -13,3 +13,11 @@ validate_terraform() {
         terraform -chdir="$1" validate -json
     done
 }
+
+plan_terraform() {
+    for i in "$@"
+    do
+        echo "Validating terraform plan for" "$i"
+        terraform -chdir="$1" plan -input=false
+    done
+}

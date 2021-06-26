@@ -15,3 +15,9 @@ resource "github_team" "ops_team" {
   description = "Team responsible for looking into operational affairs"
   privacy     = "closed"
 }
+
+resource "github_team" "data_team" {
+  name        = "Data Team"
+  description = "Team responsible for looking into data related affairs"
+  privacy     = "closed"
+}

@@ -6,6 +6,14 @@ init_terraform() {
     done
 }
 
+format_terraform() {
+    for i in "$@"
+    do
+        echo "Formatting terraform files for" "$i"
+        terraform -chdir="$1" fmt -check
+    done
+}
+
 validate_terraform() {
     for i in "$@"
     do

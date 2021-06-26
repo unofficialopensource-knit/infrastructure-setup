@@ -17,7 +17,7 @@ validate_terraform() {
 plan_terraform() {
     for i in "$@"
     do
-        echo "Validating terraform plan for" "$i"
+        echo "Generating terraform plan for" "$i"
         terraform -chdir="$1" plan -input=false
     done
 }

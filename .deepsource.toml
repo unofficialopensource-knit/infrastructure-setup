@@ -1,5 +1,15 @@
 version = 1
 
 [[analyzers]]
+name = "secrets"
+enabled = true
+
+[[analyzers]]
+name = "shell"
+enabled = true
+    [[ analyzers.meta ]]
+    dialect = "bash"
+
+[[analyzers]]
 name = "terraform"
 enabled = true

@@ -20,8 +20,8 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          terraform -chdir=github init -input=false
-          terraform -chdir=heroku init -input=false
+          source scripts/ci_utils.sh
+          init_terraform github heroku
 
       - name: "Run terraform to check for formatting"
         run: terraform fmt -check

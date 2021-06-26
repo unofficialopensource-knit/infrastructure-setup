@@ -7,7 +7,7 @@ enabled = true
 [[analyzers]]
 name = "shell"
 enabled = true
-    [[ analyzers.meta ]]
+    [ analyzers.meta ]
     dialect = "bash"
 
 [[analyzers]]

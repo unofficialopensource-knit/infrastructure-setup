@@ -20,16 +20,18 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          terraform -chdir=github init -input=false
-          terraform -chdir=heroku init -input=false
+          source scripts/ci_utils.sh
+          init_terraform github heroku
 
       - name: "Run terraform to check for formatting"
-        run: terraform fmt -check
+        run: |
+          source scripts/ci_utils.sh
+          format_terraform github heroku
 
       - name: "Run validation to check for issues"
         run: |
-          terraform -chdir=github validate -json
-          terraform -chdir=heroku validate -json
+          source scripts/ci_utils.sh
+          validate_terraform github heroku
 
   build:
     if: ${{ github.event_name == 'pull_request' }}
@@ -46,8 +48,8 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          terraform -chdir=github init -input=false
-          terraform -chdir=heroku init -input=false
+          source scripts/ci_utils.sh
+          init_terraform github heroku
 
       - name: "Generate terraform plan"
         env:
@@ -76,8 +78,8 @@ jobs:
           TF_VAR_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
         run: |
-          terraform -chdir=github plan -input=false
-          terraform -chdir=heroku plan -input=false
+          source scripts/ci_utils.sh
+          plan_terraform github heroku
 
   deploy:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
@@ -92,8 +94,8 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          terraform -chdir=github init -input=false
-          terraform -chdir=heroku init -input=false
+          source scripts/ci_utils.sh
+          init_terraform github heroku
 
       - name: "Apply terraform plan"
         env:
@@ -122,5 +124,5 @@ jobs:
           TF_VAR_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
         run: |
-          terraform -chdir=github apply -auto-approve -input=false
-          terraform -chdir=heroku apply -auto-approve -input=false
+          source scripts/ci_utils.sh
+          apply_terraform github heroku

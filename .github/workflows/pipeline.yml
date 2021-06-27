@@ -20,17 +20,17 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          source scripts/ci_utils.sh
+          source scripts/pipeline_utils.sh
           init_terraform github heroku
 
       - name: "Run terraform to check for formatting"
         run: |
-          source scripts/ci_utils.sh
+          source scripts/pipeline_utils.sh
           format_terraform github heroku
 
       - name: "Run validation to check for issues"
         run: |
-          source scripts/ci_utils.sh
+          source scripts/pipeline_utils.sh
           validate_terraform github heroku
 
   build:
@@ -48,7 +48,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          source scripts/ci_utils.sh
+          source scripts/pipeline_utils.sh
           init_terraform github heroku
 
       - name: "Generate terraform plan"
@@ -78,7 +78,7 @@ jobs:
           TF_VAR_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
         run: |
-          source scripts/ci_utils.sh
+          source scripts/pipeline_utils.sh
           plan_terraform github heroku
 
   deploy:
@@ -94,7 +94,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          source scripts/ci_utils.sh
+          source scripts/pipeline_utils.sh
           init_terraform github heroku
 
       - name: "Apply terraform plan"
@@ -124,5 +124,5 @@ jobs:
           TF_VAR_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
         run: |
-          source scripts/ci_utils.sh
+          source scripts/pipeline_utils.sh
           apply_terraform github heroku

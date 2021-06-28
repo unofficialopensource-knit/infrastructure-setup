@@ -37,3 +37,15 @@ variable "API_GATEWAY_CODECOV_TOKEN" {
   description = "Codecov token for API gateway"
   sensitive   = true
 }
+
+variable "GAMBLEY_CD_USER_AWS_ACCESS_KEY" {
+  type        = string
+  description = "Access key for GAMBLEY CD IAM user"
+  sensitive   = true
+}
+
+variable "GAMBLEY_CD_USER_AWS_SECRET_KEY" {
+  type        = string
+  description = "Secret key for GAMBLEY CD IAM user"
+  sensitive   = true
+}

@@ -26,14 +26,14 @@ variable "HEROKU_API_KEY" {
   sensitive   = true
 }
 
-variable "EMAIL_SERVICE_CODECOV_TOKEN" {
+variable "GAMBLEY_CD_USER_AWS_ACCESS_KEY" {
   type        = string
-  description = "Codecov token for email service"
+  description = "Access key for GAMBLEY CD IAM user"
   sensitive   = true
 }
 
-variable "API_GATEWAY_CODECOV_TOKEN" {
+variable "GAMBLEY_CD_USER_AWS_SECRET_KEY" {
   type        = string
-  description = "Codecov token for API gateway"
+  description = "Secret key for GAMBLEY CD IAM user"
   sensitive   = true
 }

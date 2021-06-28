@@ -21,17 +21,17 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           source scripts/pipeline_utils.sh
-          init_terraform github heroku
+          init_terraform github heroku aws
 
       - name: "Run terraform to check for formatting"
         run: |
           source scripts/pipeline_utils.sh
-          format_terraform github heroku
+          format_terraform github heroku aws
 
       - name: "Run validation to check for issues"
         run: |
           source scripts/pipeline_utils.sh
-          validate_terraform github heroku
+          validate_terraform github heroku aws
 
   build:
     if: ${{ github.event_name == 'pull_request' }}
@@ -49,7 +49,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           source scripts/pipeline_utils.sh
-          init_terraform github heroku
+          init_terraform github heroku aws
 
       - name: "Generate terraform plan"
         env:
@@ -79,7 +79,7 @@ jobs:
           TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
         run: |
           source scripts/pipeline_utils.sh
-          plan_terraform github heroku
+          plan_terraform github heroku aws
 
   deploy:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
@@ -95,7 +95,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           source scripts/pipeline_utils.sh
-          init_terraform github heroku
+          init_terraform github heroku aws
 
       - name: "Apply terraform plan"
         env:
@@ -125,4 +125,4 @@ jobs:
           TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
         run: |
           source scripts/pipeline_utils.sh
-          apply_terraform github heroku
+          apply_terraform github heroku aws

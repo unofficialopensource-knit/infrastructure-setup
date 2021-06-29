@@ -6,7 +6,6 @@ resource "github_branch_protection" "api_gateway_branch_protection_main" {
   required_status_checks {
     strict = true
     contexts = [
-      "pyup.io/safety-ci",
       "test",
       "build"
     ]

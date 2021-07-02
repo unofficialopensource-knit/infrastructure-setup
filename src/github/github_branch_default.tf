@@ -18,6 +18,11 @@ resource "github_branch_default" "email_service_default_branch" {
   branch     = github_branch.email_service_release.branch
 }
 
+resource "github_branch_default" "gambley_backend_default_branch" {
+  repository = github_repository.gambley_backend.name
+  branch     = github_branch.gambley_backend_release.branch
+}
+
 resource "github_branch_default" "platform_setup_default_branch" {
   repository = github_repository.platform_setup.name
   branch     = github_branch.platform_setup_main.branch

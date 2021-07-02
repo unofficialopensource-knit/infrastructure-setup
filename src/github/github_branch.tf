@@ -33,6 +33,16 @@ resource "github_branch" "email_service_release" {
   branch     = "release"
 }
 
+resource "github_branch" "gambley_backend_main" {
+  repository = github_repository.gambley_backend.name
+  branch     = "main"
+}
+
+resource "github_branch" "gambley_backend_release" {
+  repository = github_repository.gambley_backend.name
+  branch     = "release"
+}
+
 resource "github_branch" "platform_setup_main" {
   repository = github_repository.platform_setup.name
   branch     = "main"

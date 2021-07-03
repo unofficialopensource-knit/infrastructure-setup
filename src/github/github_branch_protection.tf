@@ -107,19 +107,6 @@ resource "github_branch_protection" "gambley_backend_branch_protection_release" 
   repository_id          = github_repository.gambley_backend.node_id
   pattern                = "release"
   enforce_admins         = false
-  require_signed_commits = false
-  required_status_checks {
-    strict = true
-    contexts = [
-      "integration-test"
-    ]
-  }
-}
-
-resource "github_branch_protection" "gambley_backend_branch_protection_release" {
-  repository_id          = github_repository.gambley_backend.node_id
-  pattern                = "release"
-  enforce_admins         = false
   require_signed_commits = true
   required_pull_request_reviews {
     dismiss_stale_reviews           = true

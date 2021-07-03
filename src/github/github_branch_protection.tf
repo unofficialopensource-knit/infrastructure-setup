@@ -95,8 +95,10 @@ resource "github_branch_protection" "gambley_backend_branch_protection_main" {
   required_status_checks {
     strict = true
     contexts = [
-      "test",
-      "build"
+      "lint",
+      "security",
+      "build",
+      "unit-test"
     ]
   }
 }

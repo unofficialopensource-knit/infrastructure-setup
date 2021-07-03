@@ -1,0 +1,9 @@
+.docker/
+.git/
+.github/
+.vscode/
+
+*.toml
+.*ignore
+.env*
+*.md

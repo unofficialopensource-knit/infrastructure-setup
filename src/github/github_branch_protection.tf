@@ -109,7 +109,7 @@ resource "github_branch_protection" "gambley_backend_branch_protection_release" 
   enforce_admins         = false
   require_signed_commits = true
   required_pull_request_reviews {
-    dismiss_stale_reviews           = true
+    dismiss_stale_reviews = true
   }
   required_status_checks {
     strict = true

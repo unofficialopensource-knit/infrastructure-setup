@@ -49,3 +49,9 @@ variable "GAMBLEY_CD_USER_AWS_SECRET_KEY" {
   description = "Secret key for GAMBLEY CD IAM user"
   sensitive   = true
 }
+
+variable "SNYK_SECRET_KEY" {
+  type        = string
+  description = "Secret key for Snyk"
+  sensitive   = true
+}

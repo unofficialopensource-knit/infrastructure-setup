@@ -23,7 +23,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          docker image build --tag infrastructure:${{ github.sha }} .
+          docker image build --file .docker/Dockerfile --tag infrastructure:${{ github.sha }} .
           docker container run --rm infrastructure:${{ github.sha }} -chdir=src/aws init -input=false
           docker container run --rm infrastructure:${{ github.sha }} -chdir=src/github init -input=false
           docker container run --rm infrastructure:${{ github.sha }} -chdir=src/heroku init -input=false

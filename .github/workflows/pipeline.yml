@@ -20,115 +20,117 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          source scripts/pipeline_utils.sh
-          init_terraform github heroku aws
+          docker image build --tag infrastructure:${{ github.sha }} .
+          docker container run --rm infrastructure:${{ github.sha }} -chdir=src/aws init -input=false
+          docker container run --rm infrastructure:${{ github.sha }} -chdir=src/github init -input=false
+          docker container run --rm infrastructure:${{ github.sha }} -chdir=src/heroku init -input=false
 
       - name: "Run terraform to check for formatting"
-        run: |
-          source scripts/pipeline_utils.sh
-          format_terraform github heroku aws
+        run: docker image ls
+      #     source scripts/pipeline_utils.sh
+      #     format_terraform github heroku aws
 
-      - name: "Run validation to check for issues"
-        run: |
-          source scripts/pipeline_utils.sh
-          validate_terraform github heroku aws
+      # - name: "Run validation to check for issues"
+      #   run: |
+      #     source scripts/pipeline_utils.sh
+      #     validate_terraform github heroku aws
 
-  build:
-    if: ${{ github.event_name == 'pull_request' }}
-    needs:
-      - test
-    runs-on: "ubuntu-20.04"
-    steps:
-      - uses: actions/checkout@v2
+  # build:
+  #   if: ${{ github.event_name == 'pull_request' }}
+  #   needs:
+  #     - test
+  #   runs-on: "ubuntu-20.04"
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - uses: hashicorp/setup-terraform@v1
+  #     - uses: hashicorp/setup-terraform@v1
 
-      - name: "Initializes terraform"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          source scripts/pipeline_utils.sh
-          init_terraform github heroku aws
+  #     - name: "Initializes terraform"
+  #       env:
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #       run: |
+  #         source scripts/pipeline_utils.sh
+  #         init_terraform github heroku aws
 
-      - name: "Generate terraform plan"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          TF_VAR_GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-          TF_VAR_DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          TF_VAR_DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-          TF_VAR_HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
-          TF_VAR_HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          TF_VAR_EMAIL_SERVICE_CODECOV_TOKEN: ${{ secrets.EMAIL_SERVICE_CODECOV_TOKEN }}
-          TF_VAR_API_GATEWAY_CODECOV_TOKEN: ${{ secrets.API_GATEWAY_CODECOV_TOKEN }}
-          TF_VAR_EMAIL_SERVICE_DATABASE_URL: ${{ secrets.EMAIL_SERVICE_DATABASE_URL }}
-          TF_VAR_EMAIL_SERVICE_MAIL_PASSWORD: ${{ secrets.EMAIL_SERVICE_MAIL_PASSWORD }}
-          TF_VAR_EMAIL_SERVICE_MAIL_USERNAME: ${{ secrets.EMAIL_SERVICE_MAIL_USERNAME }}
-          TF_VAR_EMAIL_SERVICE_REDIS_TLS_URL: ${{ secrets.EMAIL_SERVICE_REDIS_TLS_URL }}
-          TF_VAR_EMAIL_SERVICE_REDIS_URL: ${{ secrets.EMAIL_SERVICE_REDIS_URL }}
-          TF_VAR_PROFILE_SERVICE_DATABASE_URL: ${{ secrets.PROFILE_SERVICE_DATABASE_URL }}
-          TF_VAR_PROFILE_SERVICE_REDIS_TLS_URL: ${{ secrets.PROFILE_SERVICE_REDIS_TLS_URL }}
-          TF_VAR_PROFILE_SERVICE_REDIS_URL: ${{ secrets.PROFILE_SERVICE_REDIS_URL }}
-          TF_VAR_WIKI_DATABASE_HOST: ${{ secrets.WIKI_DATABASE_HOST }}
-          TF_VAR_WIKI_DATABASE_PORT: ${{ secrets.WIKI_DATABASE_PORT }}
-          TF_VAR_WIKI_DATABASE_USER: ${{ secrets.WIKI_DATABASE_USER }}
-          TF_VAR_WIKI_DATABASE_PASSWORD: ${{ secrets.WIKI_DATABASE_PASSWORD }}
-          TF_VAR_WIKI_DATABASE_NAME: ${{ secrets.WIKI_DATABASE_NAME }}
-          TF_VAR_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
-          TF_VAR_GAMBLEY_CD_USER_AWS_ACCESS_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_ACCESS_KEY }}
-          TF_VAR_GAMBLEY_CD_USER_AWS_SECRET_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_SECRET_KEY }}
-          TF_VAR_SNYK_SECRET_KEY: ${{ secrets.SNYK_SECRET_KEY }}
-        run: |
-          source scripts/pipeline_utils.sh
-          plan_terraform github heroku aws
+  #     - name: "Generate terraform plan"
+  #       env:
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         TF_VAR_GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+  #         TF_VAR_DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         TF_VAR_DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  #         TF_VAR_HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+  #         TF_VAR_HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  #         TF_VAR_EMAIL_SERVICE_CODECOV_TOKEN: ${{ secrets.EMAIL_SERVICE_CODECOV_TOKEN }}
+  #         TF_VAR_API_GATEWAY_CODECOV_TOKEN: ${{ secrets.API_GATEWAY_CODECOV_TOKEN }}
+  #         TF_VAR_EMAIL_SERVICE_DATABASE_URL: ${{ secrets.EMAIL_SERVICE_DATABASE_URL }}
+  #         TF_VAR_EMAIL_SERVICE_MAIL_PASSWORD: ${{ secrets.EMAIL_SERVICE_MAIL_PASSWORD }}
+  #         TF_VAR_EMAIL_SERVICE_MAIL_USERNAME: ${{ secrets.EMAIL_SERVICE_MAIL_USERNAME }}
+  #         TF_VAR_EMAIL_SERVICE_REDIS_TLS_URL: ${{ secrets.EMAIL_SERVICE_REDIS_TLS_URL }}
+  #         TF_VAR_EMAIL_SERVICE_REDIS_URL: ${{ secrets.EMAIL_SERVICE_REDIS_URL }}
+  #         TF_VAR_PROFILE_SERVICE_DATABASE_URL: ${{ secrets.PROFILE_SERVICE_DATABASE_URL }}
+  #         TF_VAR_PROFILE_SERVICE_REDIS_TLS_URL: ${{ secrets.PROFILE_SERVICE_REDIS_TLS_URL }}
+  #         TF_VAR_PROFILE_SERVICE_REDIS_URL: ${{ secrets.PROFILE_SERVICE_REDIS_URL }}
+  #         TF_VAR_WIKI_DATABASE_HOST: ${{ secrets.WIKI_DATABASE_HOST }}
+  #         TF_VAR_WIKI_DATABASE_PORT: ${{ secrets.WIKI_DATABASE_PORT }}
+  #         TF_VAR_WIKI_DATABASE_USER: ${{ secrets.WIKI_DATABASE_USER }}
+  #         TF_VAR_WIKI_DATABASE_PASSWORD: ${{ secrets.WIKI_DATABASE_PASSWORD }}
+  #         TF_VAR_WIKI_DATABASE_NAME: ${{ secrets.WIKI_DATABASE_NAME }}
+  #         TF_VAR_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+  #         TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
+  #         TF_VAR_GAMBLEY_CD_USER_AWS_ACCESS_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_ACCESS_KEY }}
+  #         TF_VAR_GAMBLEY_CD_USER_AWS_SECRET_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_SECRET_KEY }}
+  #         TF_VAR_SNYK_SECRET_KEY: ${{ secrets.SNYK_SECRET_KEY }}
+  #       run: |
+  #         source scripts/pipeline_utils.sh
+  #         plan_terraform github heroku aws
 
-  deploy:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-    runs-on: "ubuntu-20.04"
-    steps:
-      - uses: actions/checkout@v2
+  # deploy:
+  #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+  #   runs-on: "ubuntu-20.04"
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - uses: hashicorp/setup-terraform@v1
+  #     - uses: hashicorp/setup-terraform@v1
 
-      - name: "Initializes terraform"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          source scripts/pipeline_utils.sh
-          init_terraform github heroku aws
+  #     - name: "Initializes terraform"
+  #       env:
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #       run: |
+  #         source scripts/pipeline_utils.sh
+  #         init_terraform github heroku aws
 
-      - name: "Apply terraform plan"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          TF_VAR_GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-          TF_VAR_DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          TF_VAR_DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-          TF_VAR_HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
-          TF_VAR_HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          TF_VAR_EMAIL_SERVICE_CODECOV_TOKEN: ${{ secrets.EMAIL_SERVICE_CODECOV_TOKEN }}
-          TF_VAR_API_GATEWAY_CODECOV_TOKEN: ${{ secrets.API_GATEWAY_CODECOV_TOKEN }}
-          TF_VAR_EMAIL_SERVICE_DATABASE_URL: ${{ secrets.EMAIL_SERVICE_DATABASE_URL }}
-          TF_VAR_EMAIL_SERVICE_MAIL_PASSWORD: ${{ secrets.EMAIL_SERVICE_MAIL_PASSWORD }}
-          TF_VAR_EMAIL_SERVICE_MAIL_USERNAME: ${{ secrets.EMAIL_SERVICE_MAIL_USERNAME }}
-          TF_VAR_EMAIL_SERVICE_REDIS_TLS_URL: ${{ secrets.EMAIL_SERVICE_REDIS_TLS_URL }}
-          TF_VAR_EMAIL_SERVICE_REDIS_URL: ${{ secrets.EMAIL_SERVICE_REDIS_URL }}
-          TF_VAR_PROFILE_SERVICE_DATABASE_URL: ${{ secrets.PROFILE_SERVICE_DATABASE_URL }}
-          TF_VAR_PROFILE_SERVICE_REDIS_TLS_URL: ${{ secrets.PROFILE_SERVICE_REDIS_TLS_URL }}
-          TF_VAR_PROFILE_SERVICE_REDIS_URL: ${{ secrets.PROFILE_SERVICE_REDIS_URL }}
-          TF_VAR_WIKI_DATABASE_HOST: ${{ secrets.WIKI_DATABASE_HOST }}
-          TF_VAR_WIKI_DATABASE_PORT: ${{ secrets.WIKI_DATABASE_PORT }}
-          TF_VAR_WIKI_DATABASE_USER: ${{ secrets.WIKI_DATABASE_USER }}
-          TF_VAR_WIKI_DATABASE_PASSWORD: ${{ secrets.WIKI_DATABASE_PASSWORD }}
-          TF_VAR_WIKI_DATABASE_NAME: ${{ secrets.WIKI_DATABASE_NAME }}
-          TF_VAR_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
-          TF_VAR_GAMBLEY_CD_USER_AWS_ACCESS_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_ACCESS_KEY }}
-          TF_VAR_GAMBLEY_CD_USER_AWS_SECRET_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_SECRET_KEY }}
-          TF_VAR_SNYK_SECRET_KEY: ${{ secrets.SNYK_SECRET_KEY }}
-        run: |
-          source scripts/pipeline_utils.sh
-          apply_terraform github heroku aws
+  #     - name: "Apply terraform plan"
+  #       env:
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         TF_VAR_GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+  #         TF_VAR_DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         TF_VAR_DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  #         TF_VAR_HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+  #         TF_VAR_HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  #         TF_VAR_EMAIL_SERVICE_CODECOV_TOKEN: ${{ secrets.EMAIL_SERVICE_CODECOV_TOKEN }}
+  #         TF_VAR_API_GATEWAY_CODECOV_TOKEN: ${{ secrets.API_GATEWAY_CODECOV_TOKEN }}
+  #         TF_VAR_EMAIL_SERVICE_DATABASE_URL: ${{ secrets.EMAIL_SERVICE_DATABASE_URL }}
+  #         TF_VAR_EMAIL_SERVICE_MAIL_PASSWORD: ${{ secrets.EMAIL_SERVICE_MAIL_PASSWORD }}
+  #         TF_VAR_EMAIL_SERVICE_MAIL_USERNAME: ${{ secrets.EMAIL_SERVICE_MAIL_USERNAME }}
+  #         TF_VAR_EMAIL_SERVICE_REDIS_TLS_URL: ${{ secrets.EMAIL_SERVICE_REDIS_TLS_URL }}
+  #         TF_VAR_EMAIL_SERVICE_REDIS_URL: ${{ secrets.EMAIL_SERVICE_REDIS_URL }}
+  #         TF_VAR_PROFILE_SERVICE_DATABASE_URL: ${{ secrets.PROFILE_SERVICE_DATABASE_URL }}
+  #         TF_VAR_PROFILE_SERVICE_REDIS_TLS_URL: ${{ secrets.PROFILE_SERVICE_REDIS_TLS_URL }}
+  #         TF_VAR_PROFILE_SERVICE_REDIS_URL: ${{ secrets.PROFILE_SERVICE_REDIS_URL }}
+  #         TF_VAR_WIKI_DATABASE_HOST: ${{ secrets.WIKI_DATABASE_HOST }}
+  #         TF_VAR_WIKI_DATABASE_PORT: ${{ secrets.WIKI_DATABASE_PORT }}
+  #         TF_VAR_WIKI_DATABASE_USER: ${{ secrets.WIKI_DATABASE_USER }}
+  #         TF_VAR_WIKI_DATABASE_PASSWORD: ${{ secrets.WIKI_DATABASE_PASSWORD }}
+  #         TF_VAR_WIKI_DATABASE_NAME: ${{ secrets.WIKI_DATABASE_NAME }}
+  #         TF_VAR_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+  #         TF_VAR_TRUSTED_HOSTS: ${{ secrets.TRUSTED_HOSTS }}
+  #         TF_VAR_GAMBLEY_CD_USER_AWS_ACCESS_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_ACCESS_KEY }}
+  #         TF_VAR_GAMBLEY_CD_USER_AWS_SECRET_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_SECRET_KEY }}
+  #         TF_VAR_SNYK_SECRET_KEY: ${{ secrets.SNYK_SECRET_KEY }}
+  #       run: |
+  #         source scripts/pipeline_utils.sh
+  #         apply_terraform github heroku aws

@@ -1,6 +1,9 @@
 .git/
 .github/
 .vscode/
+src/aws/.terraform/
+src/github/.terraform/
+src/heroku/.terraform/
 
 .docker/Dockerfile
 *.toml

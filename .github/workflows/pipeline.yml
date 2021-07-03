@@ -18,12 +18,14 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v1
 
+      - name: "Build the image"
+        run: docker image build --file .docker/Dockerfile --tag infrastructure:${{ github.sha }} .
+
       - name: "Initializes terraform"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          docker image build --file .docker/Dockerfile --tag infrastructure:${{ github.sha }} .
           docker container run \
             --rm \
             --env AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \

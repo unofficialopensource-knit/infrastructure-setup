@@ -2,9 +2,12 @@ name: "Pipeline"
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - docker
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   test:

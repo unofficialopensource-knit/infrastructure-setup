@@ -1,8 +1,8 @@
-.docker/
 .git/
 .github/
 .vscode/
 
+.docker/Dockerfile
 *.toml
 .*ignore
 .env*

@@ -33,3 +33,9 @@ resource "github_actions_organization_secret" "gambley_cd_secret_key" {
   plaintext_value = var.GAMBLEY_CD_USER_AWS_SECRET_KEY
   visibility      = "all"
 }
+
+resource "github_actions_organization_secret" "snyk_secret_key" {
+  secret_name     = "SNYK_SECRET_KEY"
+  plaintext_value = var.SNYK_SECRET_KEY
+  visibility      = "all"
+}

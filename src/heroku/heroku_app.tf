@@ -53,6 +53,12 @@ resource "heroku_app" "email_service_app" {
   }
 }
 
+resource "heroku_app" "gambley_backend_app" {
+  name   = "gambley-backend-web"
+  region = "us"
+  stack  = "container"
+}
+
 resource "heroku_app" "profile_service_app" {
   name   = "profile-service-web"
   region = "us"

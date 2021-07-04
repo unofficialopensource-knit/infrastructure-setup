@@ -15,7 +15,7 @@ init_terraform() {
 format_terraform() {
     for dir in "$@"
     do
-        echo "Initializing terraform for" "$dir"
+        echo "Formatting terraform files for" "$dir"
         docker container run \
             --env AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
             --env AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
@@ -29,7 +29,7 @@ format_terraform() {
 validate_terraform() {
     for dir in "$@"
     do
-        echo "Initializing terraform for" "$dir"
+        echo "Validating terraform plan for" "$dir"
         docker container run \
             --env AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
             --env AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \

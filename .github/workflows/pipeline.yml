@@ -45,23 +45,14 @@ jobs:
           source scripts/utils.sh
           format_terraform aws github heroku
 
-      # - name: "Run validation to check for issues"
-      #   run: |
-      #     docker container run \
-      #       --rm \
-      #       --env AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
-      #       --env AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
-      #       infrastructure:${{ github.sha }} -chdir=src/aws validate -json
-      #     docker container run \
-      #       --rm \
-      #       --env AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
-      #       --env AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
-      #       infrastructure:${{ github.sha }} -chdir=src/github validate -json
-      #     docker container run \
-      #       --rm \
-      #       --env AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
-      #       --env AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
-      #       infrastructure:${{ github.sha }} -chdir=src/heroku validate -json
+      - name: "Run validation to check for issues"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GITHUB_COMMIT_SHA: ${{ github.sha }}
+        run: |
+          source scripts/utils.sh
+          format_terraform aws github heroku
 
   # build:
   #   if: ${{ github.event_name == 'pull_request' }}

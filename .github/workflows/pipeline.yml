@@ -65,8 +65,6 @@ jobs:
 
       - name: "Create the volumes"
         run: |
-          docker image ls
-          docker volume ls
           docker volume create aws-provider
           docker volume create github-provider
           docker volume create heroku-provider

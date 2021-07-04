@@ -36,23 +36,14 @@ jobs:
           source scripts/utils.sh
           init_terraform aws github heroku
 
-      # - name: "Run terraform to check for formatting"
-      #   run: |
-      #     docker container run \
-      #       --rm \
-      #       --env AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
-      #       --env AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
-      #       infrastructure:${{ github.sha }} -chdir=src/aws fmt -check
-      #     docker container run \
-      #       --rm \
-      #       --env AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
-      #       --env AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
-      #       infrastructure:${{ github.sha }} -chdir=src/github fmt -check
-      #     docker container run \
-      #       --rm \
-      #       --env AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
-      #       --env AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
-      #       infrastructure:${{ github.sha }} -chdir=src/heroku fmt -check
+      - name: "Run terraform to check for formatting"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GITHUB_COMMIT_SHA: ${{ github.sha }}
+        run: |
+          source scripts/utils.sh
+          format_terraform aws github heroku
 
       # - name: "Run validation to check for issues"
       #   run: |

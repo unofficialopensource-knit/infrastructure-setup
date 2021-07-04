@@ -8,7 +8,7 @@ init_terraform() {
             --volume aws-provider:/app/src/aws/.terraform \
             --volume github-provider:/app/src/github/.terraform \
             --volume heroku-provider:/app/src/heroku/.terraform \
-            infrastructure:"$GITHUB_COMMIT_SHA" -chdir=src/"$dir" init -input=false
+            infrastructure:"$GITHUB_COMMIT_SHA" -chdir=src/"$dir" init -input=false 2>&1
     done
 }
 
@@ -22,7 +22,7 @@ format_terraform() {
             --volume aws-provider:/app/src/aws/.terraform \
             --volume github-provider:/app/src/github/.terraform \
             --volume heroku-provider:/app/src/heroku/.terraform \
-            infrastructure:"$GITHUB_COMMIT_SHA" -chdir=src/"$dir" fmt -check
+            infrastructure:"$GITHUB_COMMIT_SHA" -chdir=src/"$dir" fmt -check 2>&1
     done
 }
 
@@ -36,6 +36,6 @@ validate_terraform() {
             --volume aws-provider:/app/src/aws/.terraform \
             --volume github-provider:/app/src/github/.terraform \
             --volume heroku-provider:/app/src/heroku/.terraform \
-            infrastructure:"$GITHUB_COMMIT_SHA" -chdir=src/"$dir" validate -json
+            infrastructure:"$GITHUB_COMMIT_SHA" -chdir=src/"$dir" validate -json 2>&1
     done
 }

@@ -2,9 +2,12 @@ name: "Pipeline"
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - docker
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   test:
@@ -13,25 +16,41 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: hashicorp/setup-terraform@v1
+      - name: "Build the image"
+        run: docker image build --file .docker/Dockerfile --tag infrastructure:${{ github.sha }} .
+
+      - name: "Create the volumes"
+        run: |
+          docker volume create aws-provider
+          docker volume create github-provider
+          docker volume create heroku-provider
 
       - name: "Initializes terraform"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GITHUB_COMMIT_SHA: ${{ github.sha }}
         run: |
-          source scripts/pipeline_utils.sh
-          init_terraform github heroku aws
+          source scripts/utils.sh
+          init_terraform aws github heroku
 
       - name: "Run terraform to check for formatting"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GITHUB_COMMIT_SHA: ${{ github.sha }}
         run: |
-          source scripts/pipeline_utils.sh
-          format_terraform github heroku aws
+          source scripts/utils.sh
+          format_terraform aws github heroku
 
       - name: "Run validation to check for issues"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GITHUB_COMMIT_SHA: ${{ github.sha }}
         run: |
-          source scripts/pipeline_utils.sh
-          validate_terraform github heroku aws
+          source scripts/utils.sh
+          format_terraform aws github heroku
 
   build:
     if: ${{ github.event_name == 'pull_request' }}
@@ -41,20 +60,29 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: hashicorp/setup-terraform@v1
+      - name: "Build the image"
+        run: docker image build --file .docker/Dockerfile --tag infrastructure:${{ github.sha }} .
+
+      - name: "Create the volumes"
+        run: |
+          docker volume create aws-provider
+          docker volume create github-provider
+          docker volume create heroku-provider
 
       - name: "Initializes terraform"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GITHUB_COMMIT_SHA: ${{ github.sha }}
         run: |
-          source scripts/pipeline_utils.sh
-          init_terraform github heroku aws
+          source scripts/utils.sh
+          init_terraform aws github heroku
 
       - name: "Generate terraform plan"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GITHUB_COMMIT_SHA: ${{ github.sha }}
           TF_VAR_GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
           TF_VAR_DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           TF_VAR_DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -81,8 +109,8 @@ jobs:
           TF_VAR_GAMBLEY_CD_USER_AWS_SECRET_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_SECRET_KEY }}
           TF_VAR_SNYK_SECRET_KEY: ${{ secrets.SNYK_SECRET_KEY }}
         run: |
-          source scripts/pipeline_utils.sh
-          plan_terraform github heroku aws
+          source scripts/utils.sh
+          plan_terraform aws github heroku
 
   deploy:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
@@ -90,15 +118,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: hashicorp/setup-terraform@v1
+      - name: "Build the image"
+        run: docker image build --file .docker/Dockerfile --tag infrastructure:${{ github.sha }} .
+
+      - name: "Create the volumes"
+        run: |
+          docker volume create aws-provider
+          docker volume create github-provider
+          docker volume create heroku-provider
 
       - name: "Initializes terraform"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GITHUB_COMMIT_SHA: ${{ github.sha }}
         run: |
-          source scripts/pipeline_utils.sh
-          init_terraform github heroku aws
+          source scripts/utils.sh
+          init_terraform aws github heroku
 
       - name: "Apply terraform plan"
         env:
@@ -131,4 +167,4 @@ jobs:
           TF_VAR_SNYK_SECRET_KEY: ${{ secrets.SNYK_SECRET_KEY }}
         run: |
           source scripts/pipeline_utils.sh
-          apply_terraform github heroku aws
+          apply_terraform aws github heroku

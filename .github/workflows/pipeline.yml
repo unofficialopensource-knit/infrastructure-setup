@@ -80,6 +80,7 @@ jobs:
           TF_VAR_GAMBLEY_CD_USER_AWS_ACCESS_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_ACCESS_KEY }}
           TF_VAR_GAMBLEY_CD_USER_AWS_SECRET_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_SECRET_KEY }}
           TF_VAR_SNYK_SECRET_KEY: ${{ secrets.SNYK_SECRET_KEY }}
+          TF_VAR_GAMBLEY_BACKEND_DEEPSOURCE_DSN: ${{ secrets.GAMBLEY_BACKEND_DEEPSOURCE_DSN }}
         run: |
           source scripts/pipeline_utils.sh
           plan_terraform github heroku aws

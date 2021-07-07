@@ -9,3 +9,9 @@ resource "github_actions_secret" "api_gateway_codecov_token" {
   secret_name     = "CODECOV_TOKEN"
   plaintext_value = var.API_GATEWAY_CODECOV_TOKEN
 }
+
+resource "github_actions_secret" "gambley_backend_deepsource_dsn" {
+  repository      = github_repository.gambley_backend.name
+  secret_name     = "DEEPSOURCE_DSN"
+  plaintext_value = var.GAMBLEY_BACKEND_DEEPSOURCE_DSN
+}

@@ -55,3 +55,9 @@ variable "SNYK_SECRET_KEY" {
   description = "Secret key for Snyk"
   sensitive   = true
 }
+
+variable "GAMBLEY_BACKEND_DEEPSOURCE_DSN" {
+  type        = string
+  description = "Deepsource DSN for gambley_backend"
+  sensitive   = true
+}

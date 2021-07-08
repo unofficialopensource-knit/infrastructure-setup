@@ -4,7 +4,7 @@ resource "aws_instance" "gambley_swarm_master" {
   key_name                    = aws_key_pair.gambley_ssh_key.key_name
   associate_public_ip_address = true
   security_groups = [
-    aws_security_group.gambley_security_group.id
+    aws_security_group.gambley_security_group.name
   ]
   tags = {
     "Name"      = "Gambley Node1"

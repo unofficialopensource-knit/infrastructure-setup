@@ -30,6 +30,14 @@ jobs:
           source scripts/pipeline_utils.sh
           format_terraform github heroku aws
 
+      - name: "Adds directory for infra data"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          source scripts/pipeline_utils.sh
+          setup_data
+
       - name: "Run validation to check for issues"
         run: |
           source scripts/pipeline_utils.sh

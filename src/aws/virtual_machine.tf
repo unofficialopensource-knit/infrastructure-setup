@@ -6,6 +6,10 @@ resource "aws_instance" "gambley_swarm_master" {
   security_groups = [
     aws_security_group.gambley_security_group.id
   ]
+  tags = {
+    "Name"      = "Gambley Node1"
+    "Terraform" = "True"
+  }
 }
 
 resource "aws_key_pair" "gambley_ssh_key" {

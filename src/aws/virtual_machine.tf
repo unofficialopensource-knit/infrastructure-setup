@@ -12,7 +12,8 @@ resource "aws_key_pair" "gambley_ssh_key" {
 }
 
 resource "aws_security_group" "gambley_security_group" {
-  name = "Gambley Security group"
+  name        = "Gambley Security group"
+  description = "Security group for gambley host"
   egress {
     from_port = 0
     to_port   = 0

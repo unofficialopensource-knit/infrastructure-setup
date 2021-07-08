@@ -2,9 +2,12 @@ name: "Pipeline"
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - aws/ec2
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   test:
@@ -37,7 +40,7 @@ jobs:
     if: ${{ github.event_name == 'pull_request' }}
     needs:
       - test
-    runs-on: "ubuntu-20.04"
+    runs-on: "ubuntu-18.04"
     steps:
       - uses: actions/checkout@v2
 
@@ -50,6 +53,14 @@ jobs:
         run: |
           source scripts/pipeline_utils.sh
           init_terraform github heroku aws
+
+      - name: "Adds directory for infra data"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          source scripts/pipeline_utils.sh
+          setup_data
 
       - name: "Generate terraform plan"
         env:
@@ -87,7 +98,7 @@ jobs:
 
   deploy:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-    runs-on: "ubuntu-20.04"
+    runs-on: "ubuntu-18.04"
     steps:
       - uses: actions/checkout@v2
 
@@ -100,6 +111,14 @@ jobs:
         run: |
           source scripts/pipeline_utils.sh
           init_terraform github heroku aws
+
+      - name: "Adds directory for infra data"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          source scripts/pipeline_utils.sh
+          setup_data
 
       - name: "Apply terraform plan"
         env:

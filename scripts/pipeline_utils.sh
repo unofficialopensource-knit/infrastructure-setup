@@ -37,3 +37,12 @@ apply_terraform() {
         terraform -chdir="src/$i" apply -auto-approve -input=false
     done
 }
+
+setup_data() {
+    echo "Created data directory"
+    mkdir -p src/aws/data
+    cd src/aws/data
+
+    echo "Copying test data to test data directory"
+    aws s3 cp s3://gambley-infra-data/public_keys/id_gambley.pub .
+}

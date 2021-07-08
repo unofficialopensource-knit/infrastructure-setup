@@ -2,9 +2,11 @@ name: "Pipeline"
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   test:
@@ -49,7 +51,13 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           source scripts/pipeline_utils.sh
-          init_terraform github heroku aws
+          setup_data
+
+      - name: "Adds directory for infra data"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: bash scripts/setup_data.sh
 
       - name: "Generate terraform plan"
         env:

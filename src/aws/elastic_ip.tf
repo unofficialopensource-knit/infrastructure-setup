@@ -1,1 +1,1 @@
-resource "aws_eip" "gambley_nat_eip" {}
+resource "aws_eip" "gambley_node1_eip" {}

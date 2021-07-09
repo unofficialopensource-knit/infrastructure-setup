@@ -9,8 +9,8 @@ provider "github" {
 
 terraform {
   backend "s3" {
-    bucket         = "github-state-bucket"
-    key            = "terraform.tfstate"
+    bucket         = "terraform-gambley-state-bucket"
+    key            = "github/terraform.tfstate"
     region         = "ap-south-1"
     dynamodb_table = "github-lock-table"
     encrypt        = true

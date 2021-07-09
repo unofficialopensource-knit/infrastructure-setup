@@ -9,8 +9,8 @@ provider "heroku" {
 
 terraform {
   backend "s3" {
-    bucket         = "heroku-state-bucket"
-    key            = "terraform.tfstate"
+    bucket         = "terraform-gambley-state-bucket"
+    key            = "heroku/terraform.tfstate"
     region         = "ap-south-1"
     dynamodb_table = "heroku-lock-table"
     encrypt        = true

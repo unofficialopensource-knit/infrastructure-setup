@@ -3,7 +3,7 @@ resource "aws_instance" "gambley_swarm_master" {
   instance_type               = "t3a.small"
   key_name                    = aws_key_pair.gambley_ssh_key.key_name
   associate_public_ip_address = true
-  iam_instance_profile = aws_iam_instance_profile.gambley_iam_instance_profile.name
+  iam_instance_profile        = aws_iam_instance_profile.gambley_iam_instance_profile.name
   security_groups = [
     aws_security_group.gambley_security_group.name
   ]

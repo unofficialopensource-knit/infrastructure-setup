@@ -7,6 +7,9 @@ resource "aws_iam_role" "gambley_instance_role" {
 }
 
 resource "aws_iam_instance_profile" "gambley_iam_instance_profile" {
-  name = "gambley iam profile"
+  name = "gambley-iam-profile"
   role = aws_iam_role.gambley_instance_role.name
+  tags = {
+    "Terraform" = "True"
+  }
 }

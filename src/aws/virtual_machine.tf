@@ -5,6 +5,10 @@ resource "aws_instance" "gambley_swarm_master" {
   associate_public_ip_address = true
   user_data                   = file("${path.module}/data/user_data.sh")
   security_groups             = [aws_security_group.gambley_security_group.name]
+  iam_instance_profile        = aws_iam_instance_profile.gambley_iam_instance_profile.name
+  security_groups = [
+    aws_security_group.gambley_security_group.name
+  ]
   tags = {
     "Name"      = "Gambley Node1"
     "Terraform" = "True"

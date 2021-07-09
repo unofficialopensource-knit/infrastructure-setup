@@ -43,10 +43,12 @@ setup_data() {
     mkdir -p src/aws/data
     cd src/aws/data
 
-    echo "Copying test data to test data directory"
+    echo "Copying test data to data directory"
     aws s3 cp s3://gambley-infra-data/public_keys/id_gambley.pub .
     echo "Copying IAM Role Policy to data directory"
     aws s3 cp s3://gambley-infra-data/iam/iam_role_policy.json .
     echo "Copying IAM Role Instance Policy to data directory"
     aws s3 cp s3://gambley-infra-data/iam/iam_role_instance_policy.json .
+    echo "Copying user data script data directory"
+    aws s3 cp s3://gambley-infra-data/user_data/user_data.sh .
 }

@@ -7,7 +7,7 @@ terraform {
     bucket         = "terraform-gambley-state-bucket"
     key            = "aws/terraform.tfstate"
     region         = "ap-south-1"
-    dynamodb_table = "aws-lock-table"
+    dynamodb_table = "terraform-gambley-lock-table"
     encrypt        = true
   }
   required_providers {

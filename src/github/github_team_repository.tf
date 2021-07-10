@@ -34,18 +34,6 @@ resource "github_team_repository" "discord_bot_backend_team" {
   permission = "push"
 }
 
-resource "github_team_repository" "email_service_backend_team" {
-  team_id    = github_team.backend_team.id
-  repository = github_repository.email_service.name
-  permission = "maintain"
-}
-
-resource "github_team_repository" "email_service_ops_team" {
-  team_id    = github_team.ops_team.id
-  repository = github_repository.email_service.name
-  permission = "push"
-}
-
 resource "github_team_repository" "gambley_backend_backend_team" {
   team_id    = github_team.backend_team.id
   repository = github_repository.gambley_backend.name

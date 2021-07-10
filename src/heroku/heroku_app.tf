@@ -45,7 +45,6 @@ resource "heroku_app" "email_service_app" {
     PROCESS_TYPE        = "web"
   }
   sensitive_config_vars = {
-    DATABASE_URL  = var.EMAIL_SERVICE_DATABASE_URL
     MAIL_PASSWORD = var.EMAIL_SERVICE_MAIL_PASSWORD
     MAIL_USERNAME = var.EMAIL_SERVICE_MAIL_USERNAME
     REDIS_TLS_URL = var.EMAIL_SERVICE_REDIS_TLS_URL

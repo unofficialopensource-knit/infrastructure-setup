@@ -9,12 +9,6 @@ variable "HEROKU_API_KEY" {
   sensitive   = true
 }
 
-variable "EMAIL_SERVICE_DATABASE_URL" {
-  type        = string
-  description = "Database URI for Email Service"
-  sensitive   = true
-}
-
 variable "EMAIL_SERVICE_MAIL_PASSWORD" {
   type        = string
   description = "Email password for Email Service"

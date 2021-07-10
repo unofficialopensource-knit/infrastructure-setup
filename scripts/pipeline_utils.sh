@@ -45,8 +45,6 @@ setup_data() {
 
     echo "Copying test data to data directory"
     aws s3 cp s3://gambley-infra-data/public_keys/id_gambley.pub .
-    echo "Copying user data script data directory"
-    aws s3 cp s3://gambley-infra-data/user_data/user_data.sh .
     echo "Copying IAM Role Policy to data directory"
     aws s3 cp s3://gambley-infra-data/iam/iam_role_policy.json .
     echo "Copying IAM Role Instance Policy to data directory"

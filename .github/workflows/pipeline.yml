@@ -96,6 +96,8 @@ jobs:
           TF_VAR_GAMBLEY_BACKEND_MAIL_USERNAME: ${{ secrets.GAMBLEY_BACKEND_MAIL_USERNAME }}
           TF_VAR_GAMBLEY_BACKEND_MAIL_PASSWORD: ${{ secrets.GAMBLEY_BACKEND_MAIL_PASSWORD }}
           TF_VAR_GAMBLEY_BACKEND_SUPPRESS_SEND: ${{ secrets.GAMBLEY_BACKEND_SUPPRESS_SEND }}
+          TF_VAR_GAMBLEY_BACKEND_SSH_USER: ${{ secrets.GAMBLEY_BACKEND_SSH_USER }}
+          TF_VAR_GAMBLEY_BACKEND_SSH_HOST: ${{ secrets.GAMBLEY_BACKEND_SSH_HOST }}
         run: |
           source scripts/pipeline_utils.sh
           plan_terraform github heroku aws
@@ -151,6 +153,8 @@ jobs:
           TF_VAR_GAMBLEY_BACKEND_MAIL_USERNAME: ${{ secrets.GAMBLEY_BACKEND_MAIL_USERNAME }}
           TF_VAR_GAMBLEY_BACKEND_MAIL_PASSWORD: ${{ secrets.GAMBLEY_BACKEND_MAIL_PASSWORD }}
           TF_VAR_GAMBLEY_BACKEND_SUPPRESS_SEND: ${{ secrets.GAMBLEY_BACKEND_SUPPRESS_SEND }}
+          TF_VAR_GAMBLEY_BACKEND_SSH_USER: ${{ secrets.GAMBLEY_BACKEND_SSH_USER }}
+          TF_VAR_GAMBLEY_BACKEND_SSH_HOST: ${{ secrets.GAMBLEY_BACKEND_SSH_HOST }}
         run: |
           source scripts/pipeline_utils.sh
           apply_terraform github heroku aws

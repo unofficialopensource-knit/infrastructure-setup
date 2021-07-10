@@ -73,3 +73,15 @@ variable "GAMBLEY_BACKEND_SUPPRESS_SEND" {
   description = "Flag to disable sending mail"
   sensitive   = true
 }
+
+variable "GAMBLEY_BACKEND_SSH_USER" {
+  type        = string
+  description = "User for SSHing to master node"
+  sensitive   = true
+}
+
+variable "GAMBLEY_BACKEND_SSH_HOST" {
+  type        = string
+  description = "Host for SSHing to swarm cluster"
+  sensitive   = true
+}

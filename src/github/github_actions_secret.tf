@@ -27,3 +27,15 @@ resource "github_actions_secret" "gambley_backend_supress_send" {
   secret_name     = "SUPPRESS_SEND"
   plaintext_value = var.GAMBLEY_BACKEND_SUPPRESS_SEND
 }
+
+resource "github_actions_secret" "gambley_backend_ssh_user" {
+  repository      = github_repository.gambley_backend.name
+  secret_name     = "SSH_USER"
+  plaintext_value = var.GAMBLEY_BACKEND_SSH_USER
+}
+
+resource "github_actions_secret" "gambley_backend_ssh_host" {
+  repository      = github_repository.gambley_backend.name
+  secret_name     = "SSH_HOST"
+  plaintext_value = var.GAMBLEY_BACKEND_SSH_HOST
+}

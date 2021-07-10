@@ -26,12 +26,6 @@ variable "HEROKU_API_KEY" {
   sensitive   = true
 }
 
-variable "EMAIL_SERVICE_CODECOV_TOKEN" {
-  type        = string
-  description = "Codecov token for email service"
-  sensitive   = true
-}
-
 variable "API_GATEWAY_CODECOV_TOKEN" {
   type        = string
   description = "Codecov token for API gateway"

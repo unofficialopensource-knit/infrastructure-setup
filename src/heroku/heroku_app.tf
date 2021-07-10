@@ -47,8 +47,6 @@ resource "heroku_app" "email_service_app" {
   sensitive_config_vars = {
     MAIL_PASSWORD = var.EMAIL_SERVICE_MAIL_PASSWORD
     MAIL_USERNAME = var.EMAIL_SERVICE_MAIL_USERNAME
-    REDIS_TLS_URL = var.EMAIL_SERVICE_REDIS_TLS_URL
-    REDIS_URL     = var.EMAIL_SERVICE_REDIS_URL
   }
 }
 

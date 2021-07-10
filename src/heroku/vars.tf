@@ -21,18 +21,6 @@ variable "EMAIL_SERVICE_MAIL_USERNAME" {
   sensitive   = true
 }
 
-variable "EMAIL_SERVICE_REDIS_TLS_URL" {
-  type        = string
-  description = "Redis(secure) URI for Email Service"
-  sensitive   = true
-}
-
-variable "EMAIL_SERVICE_REDIS_URL" {
-  type        = string
-  description = "Redis URI for Email Service"
-  sensitive   = true
-}
-
 variable "PROFILE_SERVICE_DATABASE_URL" {
   type        = string
   description = "Database URI for Profile Service"

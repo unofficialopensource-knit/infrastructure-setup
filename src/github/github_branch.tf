@@ -23,16 +23,6 @@ resource "github_branch" "discord_bot_main" {
   branch     = "main"
 }
 
-resource "github_branch" "email_service_main" {
-  repository = github_repository.email_service.name
-  branch     = "main"
-}
-
-resource "github_branch" "email_service_release" {
-  repository = github_repository.email_service.name
-  branch     = "release"
-}
-
 resource "github_branch" "gambley_backend_main" {
   repository = github_repository.gambley_backend.name
   branch     = "main"

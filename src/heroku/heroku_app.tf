@@ -32,24 +32,6 @@ resource "heroku_app" "discord_bot_app" {
   }
 }
 
-resource "heroku_app" "email_service_app" {
-  name   = "email-service-web"
-  region = "us"
-  stack  = "container"
-  config_vars = {
-    DB_REVISION         = "001"
-    DEPLOYMENT_PLATFORM = "heroku"
-    FLASK_APP           = "src.app:create_app"
-    FLASK_DEBUG         = false
-    FLASK_ENV           = "production"
-    PROCESS_TYPE        = "web"
-  }
-  sensitive_config_vars = {
-    MAIL_PASSWORD = var.EMAIL_SERVICE_MAIL_PASSWORD
-    MAIL_USERNAME = var.EMAIL_SERVICE_MAIL_USERNAME
-  }
-}
-
 resource "heroku_app" "gambley_backend_app" {
   name   = "gambley-backend-web"
   region = "us"

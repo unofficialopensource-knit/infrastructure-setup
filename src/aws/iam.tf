@@ -13,3 +13,9 @@ resource "aws_iam_instance_profile" "gambley_iam_instance_profile" {
     "Terraform" = "True"
   }
 }
+
+resource "aws_iam_role_policy" "gambley_iam_instance_policy" {
+  name   = "gambley-iam-instance-policy"
+  role   = aws_iam_role.gambley_instance_role.id
+  policy = file("${path.module}/data/iam_role_instance_policy.json")
+}

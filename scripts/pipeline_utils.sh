@@ -47,4 +47,6 @@ setup_data() {
     aws s3 cp s3://gambley-infra-data/public_keys/id_gambley.pub .
     echo "Copying IAM Role Policy to data directory"
     aws s3 cp s3://gambley-infra-data/iam/iam_role_policy.json .
+    echo "Copying IAM Role Instance Policy to data directory"
+    aws s3 cp s3://gambley-infra-data/iam/iam_role_instance_policy.json .
 }

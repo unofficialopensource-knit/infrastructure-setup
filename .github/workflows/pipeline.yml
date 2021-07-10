@@ -99,6 +99,9 @@ jobs:
           TF_VAR_GAMBLEY_CD_USER_AWS_SECRET_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_SECRET_KEY }}
           TF_VAR_SNYK_SECRET_KEY: ${{ secrets.SNYK_SECRET_KEY }}
           TF_VAR_GAMBLEY_BACKEND_DEEPSOURCE_DSN: ${{ secrets.GAMBLEY_BACKEND_DEEPSOURCE_DSN }}
+          TF_VAR_GAMBLEY_BACKEND_MAIL_USERNAME: ${{ secrets.GAMBLEY_BACKEND_MAIL_USERNAME }}
+          TF_VAR_GAMBLEY_BACKEND_MAIL_PASSWORD: ${{ secrets.GAMBLEY_BACKEND_MAIL_PASSWORD }}
+          TF_VAR_GAMBLEY_BACKEND_SUPPRESS_SEND: ${{ secrets.GAMBLEY_BACKEND_SUPPRESS_SEND }}
         run: |
           source scripts/pipeline_utils.sh
           plan_terraform github heroku aws
@@ -157,6 +160,9 @@ jobs:
           TF_VAR_GAMBLEY_CD_USER_AWS_SECRET_KEY: ${{ secrets.GAMBLEY_CD_USER_AWS_SECRET_KEY }}
           TF_VAR_SNYK_SECRET_KEY: ${{ secrets.SNYK_SECRET_KEY }}
           TF_VAR_GAMBLEY_BACKEND_DEEPSOURCE_DSN: ${{ secrets.GAMBLEY_BACKEND_DEEPSOURCE_DSN }}
+          TF_VAR_GAMBLEY_BACKEND_MAIL_USERNAME: ${{ secrets.GAMBLEY_BACKEND_MAIL_USERNAME }}
+          TF_VAR_GAMBLEY_BACKEND_MAIL_PASSWORD: ${{ secrets.GAMBLEY_BACKEND_MAIL_PASSWORD }}
+          TF_VAR_GAMBLEY_BACKEND_SUPPRESS_SEND: ${{ secrets.GAMBLEY_BACKEND_SUPPRESS_SEND }}
         run: |
           source scripts/pipeline_utils.sh
           apply_terraform github heroku aws

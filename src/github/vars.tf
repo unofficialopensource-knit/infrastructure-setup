@@ -61,3 +61,21 @@ variable "GAMBLEY_BACKEND_DEEPSOURCE_DSN" {
   description = "Deepsource DSN for gambley_backend"
   sensitive   = true
 }
+
+variable "GAMBLEY_BACKEND_MAIL_USERNAME" {
+  type        = string
+  description = "Username for SMTP server"
+  sensitive   = true
+}
+
+variable "GAMBLEY_BACKEND_MAIL_PASSWORD" {
+  type        = string
+  description = "Password for SMTP server"
+  sensitive   = true
+}
+
+variable "GAMBLEY_BACKEND_SUPPRESS_SEND" {
+  type        = string
+  description = "Flag to disable sending mail"
+  sensitive   = true
+}

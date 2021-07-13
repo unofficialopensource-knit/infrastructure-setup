@@ -7,7 +7,8 @@ resource "aws_instance" "gambley_swarm_master" {
   security_groups             = [aws_security_group.gambley_security_group.name]
   iam_instance_profile        = aws_iam_instance_profile.gambley_iam_instance_profile.name
   metadata_options {
-    http_tokens = "required"
+    http_endpoint = "enabled"
+    http_tokens   = "required"
   }
   tags = {
     "Name"      = "Gambley Node1"

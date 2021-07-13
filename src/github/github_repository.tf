@@ -59,7 +59,7 @@ resource "github_repository" "gambley_backend" {
   is_template            = false
   allow_merge_commit     = false
   allow_squash_merge     = true
-  allow_rebase_merge     = false
+  allow_rebase_merge     = true
   delete_branch_on_merge = true
   has_downloads          = true
   auto_init              = false

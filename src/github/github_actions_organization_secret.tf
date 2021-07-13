@@ -23,14 +23,14 @@ resource "github_actions_organization_secret" "heroku_email" {
 }
 
 resource "github_actions_organization_secret" "gambley_cd_access_key" {
-  secret_name     = "GAMBLEY_CD_USER_AWS_ACCESS_KEY"
-  plaintext_value = var.GAMBLEY_CD_USER_AWS_ACCESS_KEY
+  secret_name     = "SERVICE_MANAGEMENT_USER_AWS_ACCESS_KEY"
+  plaintext_value = var.SERVICE_MANAGEMENT_USER_AWS_ACCESS_KEY
   visibility      = "all"
 }
 
 resource "github_actions_organization_secret" "gambley_cd_secret_key" {
-  secret_name     = "GAMBLEY_CD_USER_AWS_SECRET_KEY"
-  plaintext_value = var.GAMBLEY_CD_USER_AWS_SECRET_KEY
+  secret_name     = "SERVICE_MANAGEMENT_USER_AWS_SECRET_KEY"
+  plaintext_value = var.SERVICE_MANAGEMENT_USER_AWS_SECRET_KEY
   visibility      = "all"
 }
 

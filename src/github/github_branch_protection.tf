@@ -51,20 +51,6 @@ resource "github_branch_protection" "platform_setup_branch_protection_main" {
   require_signed_commits = true
 }
 
-resource "github_branch_protection" "profile_service_branch_protection_main" {
-  repository_id          = github_repository.profile_service.node_id
-  pattern                = "main"
-  enforce_admins         = false
-  require_signed_commits = false
-  required_status_checks {
-    strict = true
-    contexts = [
-      "test",
-      "build"
-    ]
-  }
-}
-
 resource "github_branch_protection" "web_client_branch_protection_main" {
   repository_id          = github_repository.web_client.node_id
   pattern                = "main"

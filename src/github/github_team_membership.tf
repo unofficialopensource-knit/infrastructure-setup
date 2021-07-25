@@ -28,12 +28,6 @@ resource "github_team_membership" "prakhar_data_membership" {
   role     = "member"
 }
 
-resource "github_team_membership" "shreyasi_data_membership" {
-  team_id  = github_team.data_team.id
-  username = "Shreyasi03"
-  role     = "member"
-}
-
 resource "github_team_membership" "pandeysambhi_front_end_membership" {
   team_id  = github_team.frontend_team.id
   username = "pandeysambhi"

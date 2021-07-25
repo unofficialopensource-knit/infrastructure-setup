@@ -9,24 +9,6 @@ variable "HEROKU_API_KEY" {
   sensitive   = true
 }
 
-variable "PROFILE_SERVICE_DATABASE_URL" {
-  type        = string
-  description = "Database URI for Profile Service"
-  sensitive   = true
-}
-
-variable "PROFILE_SERVICE_REDIS_TLS_URL" {
-  type        = string
-  description = "Redis(secure) URI for Profile Service"
-  sensitive   = true
-}
-
-variable "PROFILE_SERVICE_REDIS_URL" {
-  type        = string
-  description = "Redis URI for Profile Service"
-  sensitive   = true
-}
-
 variable "WIKI_DATABASE_HOST" {
   type        = string
   description = "Database host for Wiki"

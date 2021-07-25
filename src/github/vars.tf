@@ -4,17 +4,6 @@ variable "GH_PERSONAL_ACCESS_TOKEN" {
   sensitive   = true
 }
 
-variable "DOCKERHUB_USERNAME" {
-  type        = string
-  description = "Dockerhub username for login"
-}
-
-variable "DOCKERHUB_TOKEN" {
-  type        = string
-  description = "Dockerhub token for login"
-  sensitive   = true
-}
-
 variable "HEROKU_EMAIL" {
   type        = string
   description = "Heroku email for login"

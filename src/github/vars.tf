@@ -15,12 +15,6 @@ variable "HEROKU_API_KEY" {
   sensitive   = true
 }
 
-variable "API_GATEWAY_CODECOV_TOKEN" {
-  type        = string
-  description = "Codecov token for API gateway"
-  sensitive   = true
-}
-
 variable "SERVICE_MANAGEMENT_USER_AWS_ACCESS_KEY" {
   type        = string
   description = "Access key for SERVICE MANAGEMENT IAM user"

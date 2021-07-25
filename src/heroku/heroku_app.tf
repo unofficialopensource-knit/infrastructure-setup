@@ -1,23 +1,3 @@
-resource "heroku_app" "api_gateway_app" {
-  name   = "api-gateway-web"
-  region = "us"
-  stack  = "container"
-  config_vars = {
-    CORS_ORIGINS           = "*"
-    DEPLOYMENT_PLATFORM    = "heroku"
-    PROCESS_TYPE           = "web"
-    WEB_ENV                = "production"
-    EMAIL_MICROSERVICE_URL = "https://email-service-web.herokuapp.com"
-    USER_MICROSERVICE_URL  = "https://user-management-service-web.herokuapp.com"
-  }
-}
-
-resource "heroku_app" "auth_service_app" {
-  name   = "auth-service-web"
-  region = "us"
-  stack  = "container"
-}
-
 resource "heroku_app" "discord_bot_app" {
   name   = "discord-bot-web"
   region = "us"
@@ -36,21 +16,6 @@ resource "heroku_app" "gambley_backend_app" {
   name   = "gambley-backend-web"
   region = "us"
   stack  = "container"
-}
-
-resource "heroku_app" "profile_service_app" {
-  name   = "profile-service-web"
-  region = "us"
-  stack  = "container"
-  config_vars = {
-    NODE_ENV         = "production"
-    RESULTS_PER_PAGE = 10
-  }
-  sensitive_config_vars = {
-    DATABASE_URI  = var.PROFILE_SERVICE_DATABASE_URL
-    REDIS_TLS_URL = var.PROFILE_SERVICE_REDIS_TLS_URL
-    REDIS_URL     = var.PROFILE_SERVICE_REDIS_URL
-  }
 }
 
 resource "heroku_app" "wiki_app" {

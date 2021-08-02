@@ -40,7 +40,7 @@ apply_terraform() {
 
 setup_data() {
     echo "Created data directory"
-    mkdir -p src/aws/data
+    mkdir -p src/aws/data/user_data
     cd src/aws/data
 
     echo "Copying test data to data directory"
@@ -51,4 +51,6 @@ setup_data() {
     aws s3 cp s3://gambley-infra-data/iam/iam_role_instance_policy.json .
     echo "Copying user data script data directory"
     aws s3 cp s3://gambley-infra-data/user_data/user_data.sh .
+    echo "Copying nginx user data script data directory"
+    aws s3 cp s3://gambley-infra-data/user_data/install_nginx.sh user_data
 }

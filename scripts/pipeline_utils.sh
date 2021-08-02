@@ -50,7 +50,7 @@ setup_data() {
     echo "Copying IAM Role Instance Policy to data directory"
     aws s3 cp s3://gambley-infra-data/iam/iam_role_instance_policy.json .
     echo "Copying user data script data directory"
-    aws s3 cp s3://gambley-infra-data/user_data/swarm_master_node_setup.sh .
+    aws s3 cp s3://gambley-infra-data/user_data/swarm_master_node_setup.sh user_data
     echo "Copying nginx user data script data directory"
     aws s3 cp s3://gambley-infra-data/user_data/install_nginx.sh user_data
 }

@@ -3,7 +3,7 @@ resource "aws_instance" "gambley_swarm_master" {
   instance_type               = "t3a.small"
   key_name                    = aws_key_pair.gambley_ssh_key.key_name
   associate_public_ip_address = true
-  user_data                   = file("${path.module}/data/user_data.sh")
+  user_data                   = file("${path.module}/data/user_data/swarm_master_node_setup.sh")
   security_groups             = [aws_security_group.gambley_security_group.name]
   iam_instance_profile        = aws_iam_instance_profile.gambley_iam_instance_profile.name
   metadata_options {

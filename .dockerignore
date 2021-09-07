@@ -1,0 +1,13 @@
+.docker/
+.git/
+.github/
+.vscode/
+src/aws/.terraform/
+src/github/.terraform/
+src/heroku/.terraform/
+
+*.toml
+.*ignore
+.env*
+*.yml
+*.md

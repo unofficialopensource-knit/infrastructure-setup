@@ -1,0 +1,18 @@
+version: "3.8"
+
+
+networks:
+    infrastructure:
+        name: infrastructure
+
+
+services:
+    infrastructure:
+        image: infrastructure:development
+        build:
+            context: .
+            dockerfile: .docker/Dockerfile
+        networks:
+            - infrastructure
+        volumes:
+            - .:/usr/src/app
